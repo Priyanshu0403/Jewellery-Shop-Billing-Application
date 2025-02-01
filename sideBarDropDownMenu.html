@@ -1,0 +1,27 @@
+
+			
+			
+<div class="col col-md-2 border-end border-bottom border-light " style="background-color: black;height:620px">
+    <div class="list-group 	 fw-bold" style="border-radius:10px ; background-color:transparent; color: white ;height: 50px;">
+        <a href="adminDashboard.jsp" class="list-group-item list-group-item-action">Dashboard</a> <!-- active -->
+        <a href="customerPurchase.jsp" class="list-group-item list-group-item-action">Customer Purchases</a>
+        <a href="incomeNexpense.jsp" class="list-group-item list-group-item-action">Income & Expenses</a>
+        <a href="billList.jsp" class="list-group-item list-group-item-action">List of Bills</a>
+		
+        <!-- Dropdown for Loans -->
+        <div class="dropdown">
+            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" id="loanDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
+                Loans
+            </button>
+            <ul class="dropdown-menu w-100 bg-dark fw-bold" aria-labelledby="loanDropdown" style="color:white">
+                <li><a class="dropdown-item" href="loanProvided.jsp">Loans Provided</a></li>
+                <li><a class="dropdown-item" href="newLoan.jsp">New Loan</a></li>
+            </ul>
+        </div>
+
+        <a href="invoice.jsp" class="list-group-item list-group-item-action">Generate Invoice</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Required for Dropdown to Work) -->
+			
