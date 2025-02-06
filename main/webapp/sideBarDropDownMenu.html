@@ -1,24 +1,33 @@
 
 			
 			
-<div class="col col-md-2 border-end border-bottom border-light " style="background-color:transparent;height:620px;">
+<div class="sidebar border-end border-bottom border-light position-fixed" 
+style="background-color:transparent;width: 225px;height: 100vh;
+padding-top: 5rem;">
     <div class="list-group fw-bold" style="border-radius:0px ; background-color:transparent; color: white ;height: 50px;">
         <a href="adminDashboard.jsp" class="list-group-item list-group-item-action">Dashboard</a> <!-- active -->
         
         
         <div class="dropdown">
-            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" id="loanDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
+            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
                 Customer Purchases
             </button>
-            <ul class="dropdown-menu w-100 bg-dark fw-bold" aria-labelledby="loanDropdown" style="color:white">
+            <ul class="dropdown-menu w-100 bg-dark fw-bold" style="color:white">
                 <li><a class="dropdown-item" href="addCustomerPurchase.jsp">Add New Cusotmer</a></li>
                 <li><a class="dropdown-item" href="displayList">Show Customer List</a></li>
             </ul>
         </div>
         
+        <div class="dropdown">
+            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
+                Income & Expenses
+            </button>
+            <ul class="dropdown-menu w-100 bg-dark fw-bold" style="color:white">
+                <li><a class="dropdown-item" href="addIncomeNExpense.jsp">Add New Income/Expense</a></li>
+                <li><a class="dropdown-item" href="displayIncomeNExpenseList">Show Income/Expense List</a></li>
+            </ul>
+        </div>
         
-        
-        <a href="incomeNexpense.jsp" class="list-group-item list-group-item-action">Income & Expenses</a>
         <a href="billList.jsp" class="list-group-item list-group-item-action">List of Bills</a>
 		
         <!-- Dropdown for Loans -->

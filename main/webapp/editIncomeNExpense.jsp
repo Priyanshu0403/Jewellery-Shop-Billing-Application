@@ -1,10 +1,11 @@
+<%@ page import="com.ba.model.incomeNExpense_data" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit Income/Expense </title>
 <link href="bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
@@ -106,53 +107,56 @@
     			
 			
             	<div class="col col-md-12 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
-                  	<h3 class="mb-1 text-center">Add New Entry</h3>
+                  	<h3 class="mb-1 text-center">Edit Entry</h3>
                     <div class="content">
 							<div class="container">  
-                            	<form action="addIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:500px">
+							<% incomeNExpense_data obj1 = (incomeNExpense_data) session.getAttribute("editIncomeNExpense"); %>
+							
+                            	<form action="updateIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:500px">
                             	<div class="row">
                                 	<div class="col-md-6 mb-3">
+                                	
                                     	<label for="entreId" class="form-label">Id</label>
-                                    	<input type="number" class="form-control" name="id" id="enterId" required>
+                                    	<input type="number" class="form-control" name="id" id="enterId" value="<%= obj1.getID()%>" required>
                                 	</div>
                                 	<div class="col-md-6 mb-3">
                                     	<label for="entryDate" class="form-label">Date</label>
-                                    	<input type="date" class="form-control" name="date" id="entryDate" required>
+                                    	<input type="date" class="form-control" name="date" id="entryDate" value="<%= obj1.getDATE()%>" required>
                                 	</div>
                                 </div>
                                 <div class="row">
                                 	<div class="col-md-6 mb-3">
                                     	<label for="entryType" class="form-label">Type</label>
-                                    	<select class="form-select" name="type" id="entryType">
-                                    		<option value="" disabled selected>Choose Type</option>
-                                        	<option value="Income">Income</option>
-                                        	<option value="Expense">Expense</option>
+                                    	<select class="form-select" name="type" id="entryType" >
+                                        	<option value="Income" <%= obj1.getTYPE().equals("Income") ? "selected" : "" %>>Income</option><!-- here 
+                                        		directly the expense data was not able to fetch so used equals function to make it work
+                                        		 -->
+                                        	<option value="Expense" <%= obj1.getTYPE().equals("Expense") ? "selected" : "" %>>Expense</option>
                                     	</select>
                                 	</div>
                                 	<div class="col-md-6 mb-3">
                                     	<label for="amount" class="form-label">Amount (₹)</label>
-                                    	<input type="number" class="form-control" name="amount" id="amount" required>
+                                    	<input type="number" class="form-control" name="amount" id="amount" value="<%= obj1.getAMOUNT()%>" required>
                                 	</div>
                                 </div>
                                 	<div class="mb-3">
                                     	<label for="entryType" class="form-label">Category</label>
-                                    	<select class="form-select" name="category" id="entryType">
-                                    		<option value="" disabled selected>Choose a category</option>
-                                        	<option value="Gold Sell">Gold Sell</option>
-                                        	<option value="Gold Purchase">Gold Purchase</option>
-                                        	<option value="Loan Provided">Loan Provided</option>
-                                        	<option value="Loan income with interest">Loan income with interest</option>
+                                    	<select class="form-select" name="category" id="entryType" >
+                                        	<option value="Gold Sell"<%= obj1.getCATEGORY().equals("Gold Sell") ? "selected" : "" %>>Gold Sell</option>
+                                        	<option value="Gold Purchase"<%= obj1.getCATEGORY().equals("Gold Purchase") ? "selected" : "" %>>Gold Purchase</option>
+                                        	<option value="Loan Provided"<%= obj1.getCATEGORY().equals("Loan Provided") ? "selected" : "" %>>Loan Provided</option>
+                                        	<option value="Loan income with interest"<%= obj1.getCATEGORY().equals("Loan income with interest") ? "selected" : "" %>>Loan income with interest</option>
                                         	
                                     	</select>
                                 	</div>
                                 	<div class="mb-3">
                                     	<label for="description" class="form-label">Description</label>
-                                    	<input type="text" class="form-control" name="description" id="description" required>
+                                    	<input type="text" class="form-control" name="description" id="description" value="<%= obj1.getDESCRIPTION()%>" required>
                                 	</div>
 									<div class="row d-flex justify-content-center gap-3 ">
             				
-                						<a href="addIncomeNExpense.jsp" class="col col-5 btn btn-danger">Cancel</a>
-                						<button type="submit" class="col col-5 btn btn-success">Add Income/Expense</button>
+                						<a href="editIncomeNExpense.jsp" class="col col-5 btn btn-danger">Cancel</a>
+                						<button type="submit" class="col col-5 btn btn-success">Update Income/Expense</button>
                 						<a href="displayIncomeNExpenseList" class="col col-6 btn btn-primary">Show Income/Expense List</a>
                 			
             						</div>

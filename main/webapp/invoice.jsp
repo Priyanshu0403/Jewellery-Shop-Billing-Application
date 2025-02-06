@@ -15,6 +15,7 @@
             background-image:url(BackGroundImg.jpg);
             background-size: cover;
             background-position: center;
+            background-attachment:fixed;
             color:white;
         }
 
@@ -26,7 +27,10 @@
             width: 100%;
             height: 100%;
         }
-    	
+    	.middlePart{
+			display:flex;
+		}
+		
     	tbody{
             color: white;
         }
@@ -42,7 +46,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		.list-group .active{
@@ -60,10 +64,12 @@
     <div class="overlay"></div>
     <!-- Navbar -->
      <%@include file="navbar.html" %>
-   	<div class="container-fluid mt-1">
+     
+      <div class="middlePart">
+    <%@include file="sideBarDropDownMenu.html" %> 
+   	<div class="container-fluid " style="margin-top:80px;padding-left:260px;">
     	<div class="row">
-			<%@include file="sideBarDropDownMenu.html" %>
-		<div class="col col-md-10 pt-1" style="z-index:2;">
+		<div class="col col-md-12 pt-1" style="z-index:2;">
    
             <h2 class="mb-4">Invoice Generator</h2>
             
@@ -73,6 +79,87 @@
             <!-- Invoice Table -->
             <div class="table-responsive">
                 <h3 class="mt-4">Generated Invoices</h3>
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Customer Name</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INV001</td>
+                            <td>John Doe</td>
+                            <td>₹15,000</td>
+                            <td>2025-01-28</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>INV002</td>
+                            <td>Jane Smith</td>
+                            <td>₹20,000</td>
+                            <td>2025-01-25</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Customer Name</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INV001</td>
+                            <td>John Doe</td>
+                            <td>₹15,000</td>
+                            <td>2025-01-28</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>INV002</td>
+                            <td>Jane Smith</td>
+                            <td>₹20,000</td>
+                            <td>2025-01-25</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Customer Name</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INV001</td>
+                            <td>John Doe</td>
+                            <td>₹15,000</td>
+                            <td>2025-01-28</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>INV002</td>
+                            <td>Jane Smith</td>
+                            <td>₹20,000</td>
+                            <td>2025-01-25</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <table class="table table-bordered">
                     <thead class="table-dark">
                         <tr>
@@ -145,7 +232,7 @@
                 </div>
             </div>
     
-
+ </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 

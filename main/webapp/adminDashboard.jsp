@@ -16,6 +16,7 @@
             background-image:url(BackGroundImg.jpg);
             background-size: cover;
             background-position: center;
+            background-attachment:fixed;
             color:white;
         }
 
@@ -27,7 +28,9 @@
             width: 100%;
             height: 100%;
         }
-
+		.middlePart{
+			display:flex;
+		}
        /*  .content{
             position: relative;
             z-index: 2;
@@ -47,7 +50,7 @@
 		 .list-group a{
 			background-color: transparent;
 			color: white;
-			/* height: 70px; */
+			height: 50px;
 		} 
 		
 		 
@@ -90,12 +93,11 @@
 <body>
     <div class="overlay "></div>
     <%@include file="navbar.html" %>
-    <div class="container-fluid mt-1">
+     <div class="middlePart">
+    <%@include file="sideBarDropDownMenu.html" %>
+    <div class="container-fluid" style="margin-top:80px;padding-left:250px;">
     	<div class="row">
-    			
-			<%@include file="sideBarDropDownMenu.html" %>
-			
-				<div class="col col-md-10 pt-1" style="z-index:2;">
+				<div class="col col-md-12 pt-1" style="z-index:2;">
 					<h2 class="ms-3 ">Welcome to the Admin Dashboard</h2>
 	
 					<!-- <div class="content">
@@ -110,7 +112,7 @@
  -->                    <div class="row">
                         <div class="col-md-3">
                             <div class="card text-white bg-primary mb-3">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Total Customers</h5>
                                     <p class="card-text">50</p>
                                 </div>
@@ -118,15 +120,15 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card text-white bg-success mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">Total Income</h5>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title ">Total Income</h5>
                                     <p class="card-text">&#8377; 1,25,000</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card text-white bg-danger mb-3">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Total Expenses</h5>
                                     <p class="card-text">&#8377; 75,000</p>
                                 </div>
@@ -134,13 +136,16 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card text-white bg-warning mb-3">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Today's Opening Balance</h5>
                                     <p class="card-text">&#8377; 50,000</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    
+                    
 					
                     <div class="table-responsive">
                         <h3 class="mt-4">Recent Bills</h3>
@@ -200,7 +205,7 @@
 		</div>
 
         
-    </div>
+    
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

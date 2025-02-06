@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 public class editCustomerData extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//data requested from the servlet is always in type String
 		int cust_Id= Integer.parseInt(req.getParameter("ID"));
 		
 		try {

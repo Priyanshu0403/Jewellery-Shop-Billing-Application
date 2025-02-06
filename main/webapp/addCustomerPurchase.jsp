@@ -15,7 +15,8 @@
             
             background-image: url('BackGroundImg.jpg');
             background-size:cover;
-            background-position: center;		
+            background-position: center;
+            background-attachment:fixed;		
             color: white;
         }
     .overlay {
@@ -26,6 +27,10 @@
             width : 100%;
             height: 100%;
         }
+        
+        .middlePart{
+			display:flex;
+		}
         
  	  .content {
             position: relative;
@@ -44,7 +49,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		.list-group .active{
@@ -66,10 +71,13 @@
 <body>
 <div class="overlay"></div>
 <%@include file="navbar.html" %>
-<div class="container-fluid mt-1">
+
+<div class="middlePart">
+ <%@include file="sideBarDropDownMenu.html" %> 
+<div class="container-fluid " style="margin-top:80px;padding-left:250px;" >
 	<div class="row">
-		<%@include file="sideBarDropDownMenu.html" %>
-		<div class="col col-md-10 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
+		
+		<div class="col col-md-12 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
     
         	<h3 class="mb-1 text-center">Add Customer Purchase</h3>        	
 			<div class="content ">
@@ -154,6 +162,8 @@
 		</div>
 	</div>
 </div>
+</div>
+
 	
         
         

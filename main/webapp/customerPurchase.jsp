@@ -16,7 +16,8 @@
             
             background-image: url('BackGroundImg.jpg');
             background-size:cover;
-            background-position: center;		
+            background-position: center;
+            background-attachment:fixed;		
             color: white;
         }
   	
@@ -26,7 +27,11 @@
   		/* border-radius: 100px; */
   		
   	}
-       
+    .middlePart{
+			display:flex;
+		}
+		
+	 
    th{
    		color:white;
    	}
@@ -69,7 +74,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		.list-group .active{
@@ -88,12 +93,11 @@
 	<div class="overlay"></div>
 	
 	<%@include file="navbar.html" %>
-	
-	<div class="container-fluid mt-1">
+	<div class="middlePart">
+    <%@include file="sideBarDropDownMenu.html" %>
+	<div class="container-fluid" style="margin-top:80px;padding-left:230px;">
 	   <div class="row">
-			<%@include file="sideBarDropDownMenu.html" %>
-				
-			<div class="col col-md-10 pt-1" style="z-index:2;">
+			<div class="col col-md-12 pt-1" style="z-index:2;">
 				<h2 class="ms-3">Customer Purchase Details</h2>
 			
 				<!-- here model file data imported in which the data from the database is present from the above displayList.java class -->
@@ -112,15 +116,17 @@
         				<table class="table table-bordered table-striped">
             				<thead class="table-dark">
                 				<tr>
-                    				<th>Purchase ID</th>
+                    				<th>ID</th>
                     				<th>Customer Name</th>
-                    				<th>Contact Number</th>
+                    				<th>Contact No.</th>
                     				<th>Item Name</th>
-                    				<th>Quantity</th>
+                    				<th>Qty.</th>
                     				<th>Weight(in gram)</th>
                     				<th>Price</th>
                     				<th>Total</th>
                     				<th>Date</th>
+                    				<th>Paid</th>
+                    				<th>Due Amt.</th>
                     				<th>Action</th>
                 				</tr>
             				</thead>
@@ -137,9 +143,11 @@
                     				<td><%= cust2.getITEMNAME() %></td>
                     				<td><%= cust2.getQUANTITY() %></td>
                     				<td><%= cust2.getWEIGHT() %></td>
-                    				<td><%= cust2.getPRICE() %></td>
-                    				<td><%= cust2.getTOTAL() %></td>
+                    				<td>₹ <%= cust2.getPRICE() %></td><!-- Ctrl + Alt + 4  for rupee symbol -->
+                    				<td>₹ <%= cust2.getTOTAL() %></td>
                     				<td><%= cust2.getDATE() %></td>
+                    				<td>124243434</td>
+                    				<td>12414241224</td>                    				
                     				<td><a href="editCustomerData?ID=<%= cust2.getID() %>" class="btn btn-warning btn-sm" >Edit</a>
                     				<!-- here ID is a variable declared for storing the id fetched from getID method -->
                     				<a href="deleteCustomerData?ID=<%= cust2.getID() %>" class="btn btn-danger btn-sm">Delete</a></td>
@@ -165,64 +173,7 @@
 			</div>
 		</div>
 			</div>
-		
-	<!-- </div> -->
-	
-        	
-        	<!--  Modal for Editing Customer Purchase 	
-        		<div class="modal fade" id="editCustomerData" tabindex="-1" aria-labelledby="addPurchaseModalLabel" aria-hidden="true" >
-            		<div class="modal-dialog">
-                		<div class="modal-content">
-                    		<div class="modal-header">
-                        		<h5 class="modal-title" id="addPurchaseModalLabel">Edit Purchase</h5>
-                        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    		</div>
-                    		<div class="modal-body" >
-                        		<form action="purchase" method="post"  >
-                            		<div class="mb-3">
-                                		<label for="customerName" class="form-label">Customer Name</label>
-                                		<input type="text" class="form-control" id="customerName" name="name" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="contact" class="form-label">Contact Number</label>
-                                		<input type="text" class="form-control" id="contact" name="number" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="itemName" class="form-label">Item Name</label>
-                                		<input type="text" class="form-control" id="itemName" name="itemName" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="quantity" class="form-label">Quantity</label>
-                                		<input type="number" class="form-control" id="quantity" name="quantity" required>
-                            		</div>
-                            		
-                            		<div class="mb-3">
-                                		<label for="weight" class="form-label">Weight(in grams)</label>
-                                		<input type="number" step="0.01" class="form-control" id="weight" name="weight" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="price" class="form-label">Price (₹)</label>
-                                		<input type="number" class="form-control" id="price" name="price" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="total" class="form-label">Total (₹)</label>
-                                		<input type="number" class="form-control" id="total" readonly>
-                            		</div>
-                            		 this value is calculated in the database using below query
-                            		total_amount DECIMAL(10,2) GENERATED ALWAYS AS (quantity * price_per_unit) STORED,
-                            		
-                            		<div class="mb-3">
-                                		<label for="purchaseDate" class="form-label">Date of Purchase</label>
-                                		<input type="date" class="form-control" id="purchaseDate" name="date" required>
-                            		</div>
-                            		<button type="submit" class="btn btn-primary">Add Purchase</button>
-                        		</form>
-                    		</div>
-                		</div>
-            		</div>
-        		</div>
-	 -->
-	
+		</div>
 	
 		    
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
