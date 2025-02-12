@@ -9,7 +9,9 @@
 	<link href="bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
-    <link href="sideBarDropDownMenu.css" rel="stylesheet">   
+    <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+   
     <style>
         body{
             background-image:url(BackGroundImg.jpg);
@@ -95,7 +97,7 @@
                             <td>John Doe</td>
                             <td>₹15,000</td>
                             <td>2025-01-28</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                            <td><a class="btn btn-sm btn-primary" href="viewBill.jsp">View</a></td>
                         </tr>
                         <tr>
                             <td>INV002</td>
@@ -106,87 +108,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Invoice ID</th>
-                            <th>Customer Name</th>
-                            <th>Total Amount</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>INV001</td>
-                            <td>John Doe</td>
-                            <td>₹15,000</td>
-                            <td>2025-01-28</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>INV002</td>
-                            <td>Jane Smith</td>
-                            <td>₹20,000</td>
-                            <td>2025-01-25</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Invoice ID</th>
-                            <th>Customer Name</th>
-                            <th>Total Amount</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>INV001</td>
-                            <td>John Doe</td>
-                            <td>₹15,000</td>
-                            <td>2025-01-28</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>INV002</td>
-                            <td>Jane Smith</td>
-                            <td>₹20,000</td>
-                            <td>2025-01-25</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Invoice ID</th>
-                            <th>Customer Name</th>
-                            <th>Total Amount</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>INV001</td>
-                            <td>John Doe</td>
-                            <td>₹15,000</td>
-                            <td>2025-01-28</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>INV002</td>
-                            <td>Jane Smith</td>
-                            <td>₹20,000</td>
-                            <td>2025-01-25</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                
             </div>
             
             <!-- Button to Open Modal -->

@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
      <style>
         body{
             background-image:url(BackGroundImg.jpg);
@@ -108,11 +110,13 @@
                     </thead>
                     
                     <% 
+                    	double totalIncome = 0;
+            			double totalExpense = 0;
                     	Set<incomeNExpense_data> s1 = (Set<incomeNExpense_data>) session.getAttribute("InNEx_list");
                     	if(s1 != null && !s1.isEmpty()){
                     		for (incomeNExpense_data s2 : s1){
                     			if(s2.getTYPE().equals("Income")){  //s2.getType()==income is not allowed as in java string can't be compared using comparision operator
-                    				
+                    				 totalIncome += s2.getAMOUNT();
                     %>
                     <tbody>
                         <tr>
@@ -123,8 +127,8 @@
                             <td><%= s2.getCATEGORY() %></td>
                             <td><%= s2.getDESCRIPTION() %></td>
                             <td>
-                            	<a href="editIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-warning btn-sm">Edit</a>
-                            	<a href="deleteIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-danger btn-sm">Delete</a>
+                            	<a href="editIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-warning btn-sm">Edit <i class="fa-solid fa-pen-to-square"></i></a>
+                            	<a href="deleteIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-danger btn-sm">Delete <i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         
@@ -135,6 +139,7 @@
                     <%	
                     				
                     			}else if(s2.getTYPE().equals("Expense")){
+                    				totalExpense += s2.getAMOUNT();
                     			
                     %>
                     
@@ -147,8 +152,8 @@
                             <td><%= s2.getCATEGORY() %></td>
                             <td><%= s2.getDESCRIPTION() %></td>
                             <td>
-                            	<a href="editIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-warning btn-sm">Edit</a>
-                            	<a href="deleteIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-danger btn-sm">Delete</a>
+                            	<a href="editIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-warning btn-sm">Edit <i class="fa-solid fa-pen-to-square"></i></a>
+                            	<a href="deleteIncomeNExpense?ID=<%= s2.getID() %>" class="btn btn-danger btn-sm">Delete <i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         
@@ -174,7 +179,7 @@
                             <div class="card text-white bg-success mb-3">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Total Income</h5>
-                                    <p class="card-text">₹ 1,25,000</p>
+           	                         <p class="card-text">₹ <%= totalIncome %></p>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +187,7 @@
                             <div class="card text-white bg-danger mb-3">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Total Expenses</h5>
-                                    <p class="card-text">₹ 75,000</p>
+                                    <p class="card-text">₹ <%= totalExpense %></p>
                                 </div>
                             </div>
                         </div>

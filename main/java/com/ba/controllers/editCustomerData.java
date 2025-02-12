@@ -41,6 +41,8 @@ public class editCustomerData extends HttpServlet {
 				cstInfo.setPRICE(rs.getDouble("price_per_unit"));
 				cstInfo.setTOTAL(rs.getDouble("total_amount"));
 				cstInfo.setDATE(rs.getDate("purchase_date"));
+				cstInfo.setAMOUNTPAID(rs.getDouble("amount_paid"));
+				cstInfo.setDUEAMOUNT(rs.getDouble("due_amount"));
 				
 				HttpSession sess = req.getSession();
 				sess.setAttribute("editCustomer", cstInfo);

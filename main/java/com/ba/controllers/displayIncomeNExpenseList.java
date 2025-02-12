@@ -30,6 +30,10 @@ public class displayIncomeNExpenseList extends HttpServlet{
 
 		//used set collection framework because it stops duplicating the data(here maybe as id is a primary key so it won't get duplicated)
 		
+		double totalIncome = 0;
+		double totalExpense = 0;
+		
+		
 		try {
 			Connection conn = connectDB.getConnection();
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM  income_n_expense");
@@ -45,11 +49,10 @@ public class displayIncomeNExpenseList extends HttpServlet{
 				d1.setCATEGORY(rs.getString("Category"));
 				d1.setDESCRIPTION(rs.getString("Description"));
 				
-				
-				System.out.println(d1.getCATEGORY());
-				System.out.println("working 1");
 				set.add(d1);
 			}
+			
+			
 			//after adding the data to the SET object the HTTP SEssion object 
 			//is created for setting the SET object in it with a URL
 			HttpSession sess = req.getSession();

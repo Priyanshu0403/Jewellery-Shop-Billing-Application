@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
 	body {
@@ -138,14 +139,16 @@
 						
             			<div class="row">
 							<div class="col-md-3 mb-2">
-							
+								<label class="form-label">Date of Purchase</label>
+                			<input type="date" class="form-control" name="date" value="<%= c1.getDATE() %>" required>
 							</div>
             				<div class="col-md-6 mb-2 ">
-                			<label class="form-label">Date of Purchase</label>
-                			<input type="date" class="form-control" name="date" value="<%= c1.getDATE() %>" required>
-            			</div>
+                				<label class="form-label">Amount Paid (₹)</label>
+                    			<input type="number" class="form-control" name="paid" value="<%= c1.getAMOUNTPAID() %>" required>
+            				</div>
             				<div class="col-md-3 mb-2">
-							
+								<label class="form-label">Due Amount (₹)</label>
+                    			<input type="number" class="form-control" name="due" value="<%= c1.getDUEAMOUNT() %>" readonly>
 							</div>
             				
             			</div>

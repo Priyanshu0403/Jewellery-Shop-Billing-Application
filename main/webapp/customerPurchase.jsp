@@ -11,6 +11,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
 <style>
 	body {
             
@@ -98,7 +100,8 @@
 	<div class="container-fluid" style="margin-top:80px;padding-left:230px;">
 	   <div class="row">
 			<div class="col col-md-12 pt-1" style="z-index:2;">
-				<h2 class="ms-3">Customer Purchase Details</h2>
+			
+				<h2 class="ms-3"> <i class="fa-solid fa-users"></i> Customer Purchase Details</h2>
 			
 				<!-- here model file data imported in which the data from the database is present from the above displayList.java class -->
 				
@@ -113,7 +116,7 @@
 						
 						<!--         <h2 class="text-center">Customer Purchase Details</h2>
  -->        <!-- Table to display customer purchases -->
-        				<table class="table table-bordered table-striped">
+        				<table class="table table-bordered ">
             				<thead class="table-dark">
                 				<tr>
                     				<th>ID</th>
@@ -121,7 +124,7 @@
                     				<th>Contact No.</th>
                     				<th>Item Name</th>
                     				<th>Qty.</th>
-                    				<th>Weight(in gram)</th>
+                    				<th>Weight</th>
                     				<th>Price</th>
                     				<th>Total</th>
                     				<th>Date</th>
@@ -133,8 +136,8 @@
             				<%
 				 			List<customerInfo> cust1 =(List<customerInfo>) session.getAttribute("cst_list");
 				 			if(cust1 != null && !cust1.isEmpty()){	
+								for(customerInfo cust2:cust1){ 
 							%>
-            				<% for(customerInfo cust2:cust1){  %>
             				<tbody>
                 				<tr>
                     				<td scope="row"><%= cust2.getID() %></td>
@@ -142,15 +145,15 @@
                     				<td><%= cust2.getCONTACTNUMBER() %></td>
                     				<td><%= cust2.getITEMNAME() %></td>
                     				<td><%= cust2.getQUANTITY() %></td>
-                    				<td><%= cust2.getWEIGHT() %></td>
+                    				<td><%= cust2.getWEIGHT() %> g</td>
                     				<td>₹ <%= cust2.getPRICE() %></td><!-- Ctrl + Alt + 4  for rupee symbol -->
                     				<td>₹ <%= cust2.getTOTAL() %></td>
                     				<td><%= cust2.getDATE() %></td>
-                    				<td>124243434</td>
-                    				<td>12414241224</td>                    				
-                    				<td><a href="editCustomerData?ID=<%= cust2.getID() %>" class="btn btn-warning btn-sm" >Edit</a>
+                    				<td><%= cust2.getAMOUNTPAID() %></td>
+                    				<td><%= cust2.getDUEAMOUNT() %></td>                    				
+                    				<td><a href="editCustomerData?ID=<%= cust2.getID() %>" class="btn btn-warning btn-sm" >Edit <i class="fa-solid fa-pen-to-square"></i></a>
                     				<!-- here ID is a variable declared for storing the id fetched from getID method -->
-                    				<a href="deleteCustomerData?ID=<%= cust2.getID() %>" class="btn btn-danger btn-sm">Delete</a></td>
+                    				<a href="deleteCustomerData?ID=<%= cust2.getID() %>" class="btn btn-danger btn-sm">Delete <i class="fa-solid fa-trash-can"></i></a></td>
                 				</tr>
             				</tbody>
             				<% } } %>

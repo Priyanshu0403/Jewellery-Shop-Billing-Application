@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
 	body {
@@ -118,7 +119,7 @@
                 			</div>
 
                 			<div class="col-md-6 mb-2">
-                    			<label class="form-label">Weight (grams)</label>
+                    			<label class="form-label">Weight (in grams)</label>
                     			<input type="number" step="0.01" class="form-control" name="weight"  required>
                 			</div>
             			</div>
@@ -136,15 +137,17 @@
             			</div>
             			
 						<div class="row">
-							<div class="col-md-3 mb-2">
-							
-							</div>
-            				<div class="col-md-6 mb-2 ">
-                				<label class="form-label">Date of Purchase</label>
+							<div class="col-md-4 mb-2">
+								<label class="form-label">Date of Purchase</label>
                 				<input type="date" class="form-control" name="date" required>
+							</div>
+            				<div class="col-md-4 mb-2 ">
+                				<label class="form-label">Amt. Paid</label>
+                				<input type="number" class="form-control" name="paid" required>
             				</div>
-            				<div class="col-md-3 mb-2">
-							
+            				<div class="col-md-4 mb-2">
+								<label class="form-label">Due Amt.</label>
+                				<input type="number" class="form-control" readonly>
 							</div>
             				
             			</div>

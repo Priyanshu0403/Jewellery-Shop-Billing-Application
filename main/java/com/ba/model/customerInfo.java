@@ -13,8 +13,8 @@ public class customerInfo {
 	private Double PRICE;
 	private Double TOTAL;
 	private Date DATE;
-	
-	
+	private Double AMOUNTPAID;
+	private Double DUEAMOUNT;
 	
 	public Integer getID() {
 		return ID;
@@ -67,28 +67,22 @@ public class customerInfo {
 	public Date getDATE() {
 		return DATE;
 	}
-	public void setDATE(Date date2) {
-		DATE = date2;
+	public void setDATE(Date dATE) {
+		DATE = dATE;
 	}
-	
-	
-	
-	/*
-	 * public int getId() { return ID; } public void setId(int id) { this.ID = id; }
-	 * public String getCustomerName() { return CUSTOMERNAME; } public void
-	 * setCustomerName(String customerName) { this.CUSTOMERNAME = customerName; }
-	 * public String getContactNumber() { return CONTACTNUMBER; } public void
-	 * setContactNumber(String contactNumber) { this.CONTACTNUMBER = contactNumber;
-	 * } public String getItemName() { return ITEMNAME; } public void
-	 * setItemName(String itemName) { this.ITEMNAME = itemName; } public int
-	 * getQuantity() { return QUANTITY; } public void setQuantity(int quantity) {
-	 * this.QUANTITY = quantity; } public int getWeight() { return WEIGHT; } public
-	 * void setWeight(int weight) { this.WEIGHT = weight; } public int
-	 * getPricePerUnit() { return PRICE; } public void setPricePerUnit(int
-	 * pricePerUnit) { this.PRICE = pricePerUnit; } public int getTotal() { return
-	 * total; } public void setTotal(int total) { this.total = total; } public Date
-	 * getPurchaseDate() { return purchaseDate; } public void setPurchaseDate(Date
-	 * purchaseDate) { this.purchaseDate = purchaseDate; }
-	 */
-	 //////////
+	public Double getAMOUNTPAID() {
+		return AMOUNTPAID;
+	}
+	public void setAMOUNTPAID(Double aMOUNTPAID) {
+		AMOUNTPAID = aMOUNTPAID;
+	}
+	public Double getDUEAMOUNT() {
+		return DUEAMOUNT;
+	}
+	public void setDUEAMOUNT(Double dUEAMOUNT) {
+		DUEAMOUNT = dUEAMOUNT;
+	}
 }
+	
+	
+	
