@@ -40,6 +40,9 @@
    	td{
    		color:white;
    	} 
+   	tbody{
+   	    border: 1px solid #5b5c5c;
+   	}
    	
         
  	.overlay {
@@ -89,6 +92,29 @@
 			
 		
 		/*  side bar Styling end*/
+		
+		
+		/* to make the table fit all the content and make it scrollable */
+		.table-container {
+    		max-height: 475px; /* Adjust the height as needed */
+    		overflow-y: auto; /* Enable vertical scroll */
+    		border: 1px solid white;
+  		}
+  		
+  		.table thead {
+    		position: sticky;
+    		top: 0;
+    		z-index: 1000;
+    		background-color: #343a40; /* Dark background for the header */
+    		color: white;
+  		}
+  		.table th, .table td {
+    		min-width:50px; /* Adjust based on content */
+    		min-height:100px;
+    		text-align: center;
+    		
+		}
+		/* table end */
 </style>
 </head>
 <body>	
@@ -100,22 +126,25 @@
 	<div class="container-fluid" style="margin-top:80px;padding-left:230px;">
 	   <div class="row">
 			<div class="col col-md-12 pt-1" style="z-index:2;">
-			
-				<h2 class="ms-3"> <i class="fa-solid fa-users"></i> Customer Purchase Details</h2>
-			
+				<div class="row ">
+					<div class="col col-5">
+						<h2 class="ms-3"> <i class="fa-solid fa-users"></i> Customer Purchase Details</h2>
+					</div>
+					<div class="col col-3">
+					
+					</div>
+					<div class="col col-4">
+						<form class="d-flex" role="search">
+        					<input class="form-control me-2" type="search" placeholder="Search Customer Purchase" aria-label="Search">
+        					<button class="btn btn-light	" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+						
+      					</form>
+      				</div>
+				</div>
 				<!-- here model file data imported in which the data from the database is present from the above displayList.java class -->
 				
 				<div class="content">
-					<div class="container">
-						
-					<!-- Display Customer List -->
-						<!-- <form class="text-center" action="displayList" method="GET">
-   	 						<button  class="btn btn-success" type="submit">Show/Refresh Customer List</button>
-						</form>
-						<br>  -->
-						
-						<!--         <h2 class="text-center">Customer Purchase Details</h2>
- -->        <!-- Table to display customer purchases -->
+					<div class="table-container">
         				<table class="table table-bordered ">
             				<thead class="table-dark">
                 				<tr>
@@ -158,19 +187,11 @@
             				</tbody>
             				<% } } %>
         				</table>
-
-
-						<!-- <div class="text-center">
-            				<button class="btn btn-success" data-bs-target="addDataToModal">Show Student List</button>
-        				</div> -->
-						
-						 <!-- Add Purchase Button -->
-        				<div class="text-center">
+        			</div>
+        			<br>
+        			<div class="text-center">
             				<a href="addCustomerPurchase.jsp" class="btn btn-primary"  >Add New Purchase</a>
         				</div>
-
-        
-        			</div>
 				</div>
 				
 			</div>

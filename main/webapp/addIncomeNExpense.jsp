@@ -148,7 +148,8 @@
                                 	</div>
                                 	<div class="mb-3">
                                     	<label for="description" class="form-label">Description</label>
-                                    	<input type="text" class="form-control" name="description" id="description" required>
+                                        <textarea class="form-control" name="description" id="description" rows="4" required></textarea>
+                      
                                 	</div>
 									<div class="row d-flex justify-content-center gap-3 ">
             				

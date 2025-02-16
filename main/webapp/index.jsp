@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +131,7 @@
       
         
         <div class="mt-4">
-            <a href="#login" class="btn btn-custom btn-lg me-3" data-bs-toggle="modal">Login</a>
+            <a href="#login" onclick="load_Customer_Data()" class="btn btn-custom btn-lg me-3" data-bs-toggle="modal">Login</a>
             <a href="#signup" class="btn btn-custom btn-lg" data-bs-toggle="modal">Sign Up</a>
         </div>
     </div>
@@ -192,5 +195,42 @@
 
     <!-- Bootstrap JS -->
     <script src="bootstrap.bundle.min.js"></script>
+   <script>
+    	function load_Customer_Data() {
+        	console.log("Fetching Customer data...");
+        	console.log("Fetching Income and Expense data...");
+        
+        // Create an XMLHttpRequest object
+        
+        	var xhr1 = new XMLHttpRequest();
+			xhr1.open("GET", "displayList", true);
+			xhr1.onload = function() {
+    			console.log("Response from displayList:", xhr1.responseText);
+			};
+			xhr1.send();
+			
+			
+			var xhr2 = new XMLHttpRequest();
+			xhr2.open("GET", "displayIncomeNExpenseList", true);
+			xhr2.onload = function() {
+			    console.log("Response from displayIncomeNExpenseList:", xhr2.responseText);
+			};
+			xhr2.send(); // Send the request
+ 
+        	
+        	
+        	/* // First request
+fetch("displayList")
+    .then(response => response.text())
+    .then(data => console.log("Response from displayList:", data))
+    .catch(error => console.error("Error:", error));
+
+// Second request
+fetch("displayIncomeNExpenseList")
+    .then(response => response.text())
+    .then(data => console.log("Response from displayIncomeNExpenseList:", data))
+    .catch(error => console.error("Error:", error)); */
+    }
+    </script>
 </body>
 </html>

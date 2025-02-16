@@ -37,13 +37,11 @@
         .middlePart{
 			display:flex;
 		}
-        .container {
-        	position: relative;
-            z-index: 2;
-        }
+       
         
          tbody{
             color: white;
+            border: 1px solid #5b5c5c;
         }
         
         .fade{
@@ -71,6 +69,26 @@
 		}
 		 */
 		/*  side bar Styling end*/
+		
+		/* to make the table fit all the content and make it scrollable */
+		.table-container {
+    		max-height: 300px; /* Adjust the height as needed */
+    		overflow-y: auto; /* Enable vertical scroll */
+    		border: 1px solid white;
+    		position: relative;
+  		}
+  		
+  		.table thead{
+    		position: sticky;
+    		top: 0;
+    		z-index: 1000;
+  		}
+  		.table th, .table td {
+    		min-width:0px; /* Adjust based on content */
+    		text-align: center;
+		}
+		
+		/* table end */
     </style>
 </head>
 <body>
@@ -90,15 +108,30 @@
 	<div class="container-fluid " style="margin-top:80px;padding-left:250px;">
     <div class="row">
 			<div class="col col-md-12 pt-1" style="z-index:2;">
-            	<h2 class="mb-4">Income & Expenses</h2>        
-            	<div class="content">
-    				<div class="container">
-            <!-- Income & Expense Table -->
-            <div class="table-responsive w-100">
+				<div class="row">
+					<div class="col col-4">
+            			<h2 class="mb-4">Income & Expenses</h2>  
+            		</div>
+            		<div class="col col-4">
+            		</div>
+            		<div class="col col-4">
+						<form class="d-flex" role="search">
+        					<input class="form-control me-2" type="search" placeholder="Search Income / Expense" aria-label="Search">
+        					<button class="btn btn-light	" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+      				</div> 
+      			</div>   
+      			
                 <h3 class="mt-4">Transaction History</h3>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
+           
+            	<div class="content">
+            	
+    				<div class="table-container">
+            <!-- Income & Expense Table -->
+<!--             			<div class="table-responsive">      <thead> is inside .table-responsive, which has overflow: auto, making position: sticky ineffective.
+ -->                			<table class="table table-bordered">
+                    			<thead class="table-dark">
+                        			<tr>
                         	<th>Id</th>
                             <th>Date</th>
                             <th>Type</th>
@@ -106,9 +139,9 @@
                             <th>Category</th>
                             <th>Description</th>
                             <th>Action</th>
-                        </tr>
-                    </thead>
-                    
+                        			</tr>
+                    			</thead>
+                    <tbody>
                     <% 
                     	double totalIncome = 0;
             			double totalExpense = 0;
@@ -118,7 +151,7 @@
                     			if(s2.getTYPE().equals("Income")){  //s2.getType()==income is not allowed as in java string can't be compared using comparision operator
                     				 totalIncome += s2.getAMOUNT();
                     %>
-                    <tbody>
+                    
                         <tr>
                         	<td><%= s2.getID() %></td>
                             <td><%= s2.getDATE() %></td>
@@ -132,7 +165,7 @@
                             </td>
                         </tr>
                         
-                    </tbody>
+                    
                     
                     
                     
@@ -143,7 +176,7 @@
                     			
                     %>
                     
-                    <tbody>
+                    
                         <tr>
                         	<td><%= s2.getID() %></td>
                             <td><%= s2.getDATE() %></td>
@@ -157,22 +190,24 @@
                             </td>
                         </tr>
                         
-                    </tbody>
+                    
                     <% 			
                     			} 
                     		} 
                     	}
                     	
                     %>
+                    </tbody>
                 </table>  
-            </div>
             
-            <div class="text-center">
+            
+           
+            </div>
+            <br>
+			 <div class="text-center">
             <a href="addIncomeNExpense.jsp" type="button" class="btn btn-primary mb-4" >Add New Entry</a>
              </div>
             
-            </div>
-			
 			<div class="row d-flex justify-content-center align-items-center">
                         
                         <div class="col-md-3">

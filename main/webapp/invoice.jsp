@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.ba.model.customerInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +11,6 @@
 	<link href="bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
-    <link href="sideBarDropDownMenu.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
    
     <style>
@@ -18,9 +19,13 @@
             background-size: cover;
             background-position: center;
             background-attachment:fixed;
-            color:white;
+            
         }
-
+		
+		tbody{
+            color: white;
+            border: 1px solid #5b5c5c;
+        }
         .overlay {
             background-color: rgba(0, 0, 0, 0.6);
             position: fixed;
@@ -33,54 +38,71 @@
 			display:flex;
 		}
 		
-    	tbody{
-            color: white;
+    	.table-responsive tbody{
+           color:white;
         }
     	
         
 
-	/* SIDE BAR STYLING */
-        
-        .row .col-md-2{
-			box-shadow: 0px 10px 10px #B98522;
-		}
-
-		.list-group a{
-			background-color: transparent;
-			color: white;
-			height: 50px; 
-		}
-        
-		.list-group .active{
-			color: #B98522;
-			background-color:transparent !important; 
-			border:0;
-			font-size: x-large;
+		/* Bill Styling */
+		.BillNoInfo p{
+			font-size:8px;
+			margin-left:20px;
+			margin-bottom:0px;
 		}
 		
-		/*  side bar Styling end*/
+		/* to make the table fit all the content and make it scrollable */
+		.table-container {
+    		max-height: 300px; /* Adjust the height as needed */
+    		overflow-y: auto; /* Enable vertical scroll */
+    		border: 1px solid white;
+    		position: relative;
+  		}
+  		
+  		.table thead{
+    		position: sticky;
+    		top: 0;
+    		z-index: 1000;
+  		}
+  		.table th, .table td {
+    		min-width:0px; /* Adjust based on content */
+    		text-align: center;
+		}
+		/* table end */
+		
 </style>
 </head>
 
 <body>
     <div class="overlay"></div>
     <!-- Navbar -->
-     <%@include file="navbar.html" %>
+    <%@include file="navbar.html" %>
      
-      <div class="middlePart">
-    <%@include file="sideBarDropDownMenu.html" %> 
-   	<div class="container-fluid " style="margin-top:80px;padding-left:260px;">
-    	<div class="row">
-		<div class="col col-md-12 pt-1" style="z-index:2;">
-   
-            <h2 class="mb-4">Invoice Generator</h2>
+    <div class="middlePart">
+    	<%@include file="sideBarDropDownMenu.html" %> 
+   			<div class="container-fluid " style="margin-top:80px;padding-left:250px;">
+    			<div class="row">
+					<div class="col col-md-12 pt-1" style="z-index:2;">
+   						<div class="row">
+					<div class="col col-4">
+            			<h2 class="mb-4" style="color:white;">Invoice Generator</h2>
+            		</div>
+            		<div class="col col-4">
+            		</div>
+            		<div class="col col-4">
+						<form class="d-flex" role="search">
+        					<input class="form-control me-2" type="search" placeholder="Search Customer" aria-label="Search">
+        					<button class="btn btn-light	" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+      				</div> 
+      			</div>   
             
             
 
-
+                <h3 class="mt-4" style="color:white;">Generated Invoices</h3>
+			
             <!-- Invoice Table -->
-            <div class="table-responsive">
-                <h3 class="mt-4">Generated Invoices</h3>
+            <div class="table-container">
                 <table class="table table-bordered">
                     <thead class="table-dark">
                         <tr>
@@ -91,35 +113,41 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    <%
+						List<customerInfo> cst1 = (List<customerInfo>)session.getAttribute("invoice_list");
+						if(cst1 != null && !cst1.isEmpty()){
+						for(customerInfo cst2:cst1){
+					
+					%>
                     <tbody>
                         <tr>
-                            <td>INV001</td>
-                            <td>John Doe</td>
-                            <td>₹15,000</td>
-                            <td>2025-01-28</td>
-                            <td><a class="btn btn-sm btn-primary" href="viewBill.jsp">View</a></td>
+                            <td>INV<%= cst2.getID() %></td>
+                            <td><%= cst2.getCUSTOMERNAME() %></td>
+                            <td>₹<%= cst2.getTOTAL() %></td>
+                            <td><%= cst2.getDATE() %></td>
+                            <td><a class="btn btn-sm btn-primary" href="viewInvoice?ID=<%= cst2.getID() %>" >View</a></td>
                         </tr>
-                        <tr>
-                            <td>INV002</td>
-                            <td>Jane Smith</td>
-                            <td>₹20,000</td>
-                            <td>2025-01-25</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
+                        
                     </tbody>
+                    <%
+							}
+						}
+            		%>
                 </table>
                 
             </div>
             
             <!-- Button to Open Modal -->
-            <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#generateInvoiceModal">
-                Generate New Invoice
-            </button>
+            <br>
+            <div class="text-center">
+            	<a  type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#generateInvoiceModal" >Add New Entry</a>
+             </div>
             
         </div>
     </div>
     </div>
-    
+    		
+    		
     
             <!-- Modal for Generating Invoice -->
             <div class="modal fade" id="generateInvoiceModal" tabindex="-1" aria-labelledby="generateInvoiceModalLabel" aria-hidden="true">
@@ -131,14 +159,36 @@
                         </div>
                         <div class="modal-body">
                             <form>
+                            	<div class="mb-3">
+                                    <label for="invoiceId" class="form-label">Invoice Id</label>
+                                    <input type="text" class="form-control" id="invoiceId" placeholder="Begin With INV" required>
+                                </div>
+                                
                                 <div class="mb-3">
                                     <label for="customerName" class="form-label">Customer Name</label>
                                     <input type="text" class="form-control" id="customerName" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="purchaseDetails" class="form-label">Purchase Details</label>
-                                    <textarea class="form-control" id="purchaseDetails" required></textarea>
+                                    <label for="contactNumber" class="form-label">Contact Number</label>
+                                    <input type="number" class="form-control" id="contactNumber" required>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="itemName" class="form-label">Item Name</label>
+                                    <input type="text" class="form-control" id="itemName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="quantity" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="weight" class="form-label">Weight</label>
+                                    <input type="number" class="form-control" id="weight" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="price" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="price" required>
+                                </div>
+                                
                                 <div class="mb-3">
                                     <label for="totalAmount" class="form-label">Total Amount (₹)</label>
                                     <input type="number" class="form-control" id="totalAmount" required>
@@ -155,7 +205,9 @@
             </div>
     
  </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+ 	
+    <script src="bootstrap.bundle.min.js"></script>
 
 
 </body>

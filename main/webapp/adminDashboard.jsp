@@ -13,7 +13,6 @@
 	<link href="bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
-    <link href="sideBarDropDownMenu.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
@@ -46,52 +45,7 @@
         }
         
         
-        /* SIDE BAR STYLING */
         
-        .row .col-md-2{
-			box-shadow: 0px 10px 10px #B98522;
-		}
-
-		 .list-group a{
-			background-color: transparent;
-			color: white;
-			height: 50px;
-		} 
-		
-		 
-		/* .list-group .active{
-			color: #B98522;
-			background-color:transparent !important; 
-			border:0;
-			font-size: x-large;
-		} */
-		
-
-		
-		
-		/*  side bar Styling end*/
-		
-		
-        /* .navbar{
-        	box-shadow: 0px 1px 10px #B98522;
-        }
-        .navbar .navbar-brand{
-        	font-family: 'Playfair Display', serif;
-        	font-size: 30px;
-        } */
-/*         
-        .btn-group{
-        	width:267px;
-        	box-shadow: 0px 1px 10px #B98522;
-        	border-top-left-radius: 0px;
-        	border-top-right-radius: 0px;
-        	border:1px solid black;
-        }
-        
-        .btn-group button{
-        color:white;
-        font-weight: bold;
-        } */
         
     </style>
 </head>

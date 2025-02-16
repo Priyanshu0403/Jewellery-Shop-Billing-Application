@@ -1,9 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+	<style>
+		.dropdown:hover{
+			background-color:wheat;
+				
+			color:black;
+		}
+		
+		
+		
+		.row .col-md-2{
+			box-shadow: 0px 10px 10px #B98522;
+		}
 
-			
-			
-<div class="sidebar border-end border-bottom border-light position-fixed" 
-style="background-color:transparent;width: 225px;height: 100vh;
-padding-top: 5rem;">
+		 .list-group a{
+			background-color: transparent;
+			color: white;
+			height: 50px;
+		} 
+		/*  side bar Styling end*/
+</style>
+</head>
+
+<body>
+   <div class="sidebar border-end border-bottom border-light position-fixed" style="background-color:transparent;width: 225px;height: 100vh;padding-top: 5rem;">
     <div class="list-group fw-bold" style="border-radius:0px ; background-color:transparent; color: white ;height: 50px;">
         <a href="adminDashboard.jsp" class="list-group-item list-group-item-action">Dashboard</a> <!-- active -->
         
@@ -13,7 +37,7 @@ padding-top: 5rem;">
                 Customer Purchases
             </button>
             <ul class="dropdown-menu w-100 bg-dark fw-bold" style="color:white">
-                <li><a class="dropdown-item" href="addCustomerPurchase.jsp">Add New Cusotmer</a></li>
+                <li><a class="dropdown-item" href="addCustomerPurchase.jsp">Add New Customer</a></li>
                 <li><a class="dropdown-item" href="displayList">Show Customer List</a></li>
             </ul>
         </div>
@@ -40,10 +64,67 @@ padding-top: 5rem;">
                 <li><a class="dropdown-item" href="newLoan.jsp">New Loan</a></li>
             </ul>
         </div>
+		
+		<!-- here refer to the display Invoice data is done so that it fetches the customer data and add that data to the invoice page -->
+        <a href="displayInvoiceData" class="list-group-item list-group-item-action">Generate Invoice</a>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+<!-- <div class="sidebar border-end border-bottom border-light position-fixed" style="background-color:transparent;width: 225px;height: 100vh;padding-top: 5rem;">
+    <div class="list-group fw-bold" style="border-radius:0px ; background-color:transparent; color: white ;height: 50px;">
+        <a href="adminDashboard.jsp" class="list-group-item list-group-item-action">Dashboard</a>
+
+        
+        <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#customerPurchases" aria-expanded="false" aria-controls="customerPurchases">
+            Customer Purchases <i class="fas fa-caret-down float-end"></i>
+        </a>
+        <div class="collapse" id="customerPurchases">
+            <ul class="list-group">
+                <li><a class="list-group-item" href="addCustomerPurchase.jsp">Add New Customer</a></li>
+                <li><a class="list-group-item" href="displayList">Show Customer List</a></li>
+            </ul>
+        </div>
+
+        
+        <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#incomeExpenses" aria-expanded="false" aria-controls="incomeExpenses">
+            Income & Expenses <i class="fas fa-caret-down float-end"></i>
+        </a>
+        <div class="collapse" id="incomeExpenses">
+            <ul class="list-group">
+                <li><a class="list-group-item" href="addIncomeNExpense.jsp">Add New Income/Expense</a></li>
+                <li><a class="list-group-item" href="displayIncomeNExpenseList">Show Income/Expense List</a></li>
+            </ul>
+        </div>
+
+        <a href="billList.jsp" class="list-group-item list-group-item-action">List of Bills</a>
+
+       
+        <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#loans" aria-expanded="false" aria-controls="loans">
+            Loans <i class="fas fa-caret-down float-end"></i>
+        </a>
+        <div class="collapse" id="loans">
+            <ul class="list-group">
+                <li><a class="list-group-item" href="loanProvided.jsp">Loans Provided</a></li>
+                <li><a class="list-group-item" href="newLoan.jsp">New Loan</a></li>
+            </ul>
+        </div>
 
         <a href="invoice.jsp" class="list-group-item list-group-item-action">Generate Invoice</a>
     </div>
 </div>
+ -->
+
+
+
+
+
+	
+
 
 <!-- Bootstrap JS (Required for Dropdown to Work) -->
 			
