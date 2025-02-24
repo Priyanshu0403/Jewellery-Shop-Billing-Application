@@ -11,12 +11,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
 <style>
 	body {
             
             background-image: url('BackGroundImg.jpg');
             background-size:cover;
-            background-position: center;		
+            background-position: center;
+            background-attachment:fixed;		
             color: white;
         }
   	
@@ -26,18 +29,24 @@
   		/* border-radius: 100px; */
   		
   	}
-       
+    .middlePart{
+			display:flex;
+		}
+		
+	 
    th{
    		color:white;
    	}
-   	td{
-   		color:white;
-   	} 
+   
+   	tbody{
+   	    border: 1px solid #5b5c5c;
+   	    
+   	}
    	
         
  	.overlay {
             background-color: rgba(0, 0, 0, 0.6 );
-            position: absolute;
+            position:fixed;/* due to this the overlay class now gets applied to the entire page and  not only the visible part of the screen */
             top: 0;
             left: 0;
             width : 100%;
@@ -69,7 +78,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		.list-group .active{
@@ -82,203 +91,130 @@
 			
 		
 		/*  side bar Styling end*/
+		
+		
+		/* to make the table fit all the content and make it scrollable */
+		.table-container {
+    		max-height: 475px; /* Adjust the height as needed */
+    		overflow-y: auto; /* Enable vertical scroll */
+    		border: 1px solid white;
+    		position: relative;
+  		}
+  		
+  		.table thead {
+    		position: sticky;
+    		top: 0;
+    		background-color: #343a40; /* Dark background for the header */
+    		border: 1px solid #ced2d2;
+  		}
+  		.table th, .table td {
+    		min-width:50px; /* Adjust based on content */
+    		min-height:100px;
+    		text-align: center;
+    		
+		}
+		/* table end */
 </style>
 </head>
 <body>	
 	<div class="overlay"></div>
 	
 	<%@include file="navbar.html" %>
-	
-	<div class="container-fluid mt-1">
+	<div class="middlePart">
+    <%@include file="sideBarDropDownMenu.html" %>
+	<div class="container-fluid" style="margin-top:80px;padding-left:230px;">
 	   <div class="row">
-			<%@include file="sideBarDropDownMenu.html" %>
-				
-			<div class="col col-md-10 pt-1" style="z-index:2;">
-				<h2 class="ms-3">Customer Purchase Details</h2>
-				
+			<div class="col col-md-12 pt-1" style="z-index:2;">
+				<div class="row ">
+					<div class="col col-5">
+						<h2 class="ms-3"> <i class="fa-solid fa-users"></i> Customer Purchase Details</h2>
+					</div>
+					<div class="col col-4 mt-2">
+						<h5>Total Number Of Customers: </h5>
+					</div>
+					<div class="col col-3">
+						<form class="d-flex" role="search">
+        					<input class="form-control me-2" type="search" placeholder="Search Customer Purchase" aria-label="Search">
+        					<button class="btn btn-light	" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+						
+      					</form>
+      				</div>
+				</div>
 				<!-- here model file data imported in which the data from the database is present from the above displayList.java class -->
 				
 				<div class="content">
-					<div class="container">
-					
-					<!-- Display Customer List -->
-						<form class="text-center" action="addDataToModal" method="GET">
-   	 						<button  class="btn btn-success" type="submit">Show/Refresh Customer List</button>
-						</form>
-						<br>
-						
-						<!--         <h2 class="text-center">Customer Purchase Details</h2>
- -->        <!-- Table to display customer purchases -->
-        				<table class="table table-bordered table-striped">
+					<div class="table-container">
+        				<table class="table table-bordered ">
             				<thead class="table-dark">
                 				<tr>
-                    				<th>Purchase ID</th>
+                    				<th>ID</th>
                     				<th>Customer Name</th>
-                    				<th>Contact Number</th>
+                    				<th>Contact No.</th>
                     				<th>Item Name</th>
-                    				<th>Quantity</th>
-                    				<th>Weight(in gram)</th>
+                    				<th>Qty.</th>
+                    				<th>Weight</th>
                     				<th>Price</th>
                     				<th>Total</th>
                     				<th>Date</th>
+                    				<th>Paid</th>
+                    				<th>Due Amt.</th>
                     				<th>Action</th>
                 				</tr>
             				</thead>
             				<%
 				 			List<customerInfo> cust1 =(List<customerInfo>) session.getAttribute("cst_list");
 				 			if(cust1 != null && !cust1.isEmpty()){	
+								for(customerInfo cust2:cust1){ 
 							%>
-            				<% for(customerInfo cust2:cust1){  %>
-            				<tbody>
+            				<tbody class="table-secondary">
                 				<tr>
                     				<td scope="row"><%= cust2.getID() %></td>
                     				<td><%= cust2.getCUSTOMERNAME() %></td>
                     				<td><%= cust2.getCONTACTNUMBER() %></td>
                     				<td><%= cust2.getITEMNAME() %></td>
                     				<td><%= cust2.getQUANTITY() %></td>
-                    				<td><%= cust2.getWEIGHT() %></td>
-                    				<td><%= cust2.getPRICE() %></td>
-                    				<td><%= cust2.getTOTAL() %></td>
+                    				<td><%= cust2.getWEIGHT() %> g</td>
+                    				<td>₹ <%= cust2.getPRICE() %></td><!-- Ctrl + Alt + 4  for rupee symbol -->
+                    				<td>₹ <%= cust2.getTOTAL() %></td>
                     				<td><%= cust2.getDATE() %></td>
-                    				<td><a href="editCustomerData?ID=<%= cust2.getID() %>" class="btn btn-warning btn-sm" >Edit</a>
+                    				<td><%= cust2.getAMOUNTPAID() %></td>
+                    				<td><%= cust2.getDUEAMOUNT() %></td>                    				
+                    				<td><a href="editCustomerData?ID=<%= cust2.getID() %>" class="btn btn-warning btn-sm" >Edit <i class="fa-solid fa-pen-to-square"></i></a>
                     				<!-- here ID is a variable declared for storing the id fetched from getID method -->
-                    				<a href="deleteCustomerData?ID=<%= cust2.getID() %>" class="btn btn-danger btn-sm">Delete</a></td>
+                    				<a href="deleteCustomerData?ID=<%= cust2.getID() %>" onclick="confirmDelete(event)" class="btn btn-danger btn-sm">Delete <i class="fa-solid fa-trash-can"></i></a></td>
                 				</tr>
             				</tbody>
             				<% } } %>
         				</table>
-
-
-						<!-- <div class="text-center">
-            				<button class="btn btn-success" data-bs-target="addDataToModal">Show Student List</button>
-        				</div> -->
-						
-						 <!-- Add Purchase Button -->
-        				<div class="text-center">
-            				<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPurchaseModal">Add New Purchase</button>
-        				</div>
-
-        
         			</div>
+        			<br>
+        			<div class="text-center">
+            				<a href="addCustomerPurchase.jsp" class="btn btn-primary"  >Add New Purchase</a>
+        				</div>
 				</div>
 				
 			</div>
 		</div>
 			</div>
-		
-	<!-- </div> -->
-	<!-- Modal for Adding Purchase -->
-        		<div class="modal fade" id="addPurchaseModal" tabindex="-1" aria-labelledby="addPurchaseModalLabel" aria-hidden="true" >
-            		<div class="modal-dialog">
-                		<div class="modal-content">
-                    		<div class="modal-header">
-                        		<h5 class="modal-title" id="addPurchaseModalLabel">Add New Purchase</h5>
-                        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    		</div>
-                    		<div class="modal-body" >
-                        		<form action="purchase" method="post"  >
-                            		<div class="mb-3">
-                                		<label for="customerName" class="form-label">Customer Name</label>
-                                		<input type="text" class="form-control" id="customerName" name="name" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="contact" class="form-label">Contact Number</label>
-                                		<input type="text" class="form-control" id="contact" name="number" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="itemName" class="form-label">Item Name</label>
-                                		<input type="text" class="form-control" id="itemName" name="itemName" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="quantity" class="form-label">Quantity</label>
-                                		<input type="number" class="form-control" id="quantity" name="quantity" required>
-                            		</div>
-                            		
-                            		<div class="mb-3">
-                                		<label for="weight" class="form-label">Weight(in grams)</label>
-                                		<input type="number" step="0.01" class="form-control" id="weight" name="weight" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="price" class="form-label">Price (₹)</label>
-                                		<input type="number" class="form-control" id="price" name="price" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="total" class="form-label">Total (₹)</label>
-                                		<input type="number" class="form-control" id="total" readonly>
-                            		</div>
-                            		<!--  this value is calculated in the database using below query-->
-                            		<!-- total_amount DECIMAL(10,2) GENERATED ALWAYS AS (quantity * price_per_unit) STORED, -->
-                            		
-                            		<div class="mb-3">
-                                		<label for="purchaseDate" class="form-label">Date of Purchase</label>
-                                		<input type="date" class="form-control" id="purchaseDate" name="date" required>
-                            		</div>
-                            		<button type="submit" class="btn btn-primary">Add Purchase</button>
-                        		</form>
-                    		</div>
-                		</div>
-            		</div>
-        		</div>
-        		
-        	
-        	<!-- Modal for Editing Customer Purchase -->	
-        		<div class="modal fade" id="editCustomerData" tabindex="-1" aria-labelledby="addPurchaseModalLabel" aria-hidden="true" >
-            		<div class="modal-dialog">
-                		<div class="modal-content">
-                    		<div class="modal-header">
-                        		<h5 class="modal-title" id="addPurchaseModalLabel">Edit Purchase</h5>
-                        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    		</div>
-                    		<div class="modal-body" >
-                        		<form action="purchase" method="post"  >
-                            		<div class="mb-3">
-                                		<label for="customerName" class="form-label">Customer Name</label>
-                                		<input type="text" class="form-control" id="customerName" name="name" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="contact" class="form-label">Contact Number</label>
-                                		<input type="text" class="form-control" id="contact" name="number" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="itemName" class="form-label">Item Name</label>
-                                		<input type="text" class="form-control" id="itemName" name="itemName" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="quantity" class="form-label">Quantity</label>
-                                		<input type="number" class="form-control" id="quantity" name="quantity" required>
-                            		</div>
-                            		
-                            		<div class="mb-3">
-                                		<label for="weight" class="form-label">Weight(in grams)</label>
-                                		<input type="number" step="0.01" class="form-control" id="weight" name="weight" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="price" class="form-label">Price (₹)</label>
-                                		<input type="number" class="form-control" id="price" name="price" required>
-                            		</div>
-                            		<div class="mb-3">
-                                		<label for="total" class="form-label">Total (₹)</label>
-                                		<input type="number" class="form-control" id="total" readonly>
-                            		</div>
-                            		<!--  this value is calculated in the database using below query-->
-                            		<!-- total_amount DECIMAL(10,2) GENERATED ALWAYS AS (quantity * price_per_unit) STORED, -->
-                            		
-                            		<div class="mb-3">
-                                		<label for="purchaseDate" class="form-label">Date of Purchase</label>
-                                		<input type="date" class="form-control" id="purchaseDate" name="date" required>
-                            		</div>
-                            		<button type="submit" class="btn btn-primary">Add Purchase</button>
-                        		</form>
-                    		</div>
-                		</div>
-            		</div>
-        		</div>
-	
-	
+		</div>
 	
 		    
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
 	<script src="bootstrap.bundle.min.js"></script>
+	
+	<script>
+		//confirm delete is a function present in Javascript 
+		function confirmDelete(event){
+			event.preventDefault(); // Prevent default link action
+			let userConfirm = confirm("Are you sure you want to delete this record");
+			//built-in JavaScript function that shows a confirmation pop-up.
+			
+			if(userConfirm){
+				window.location.href = event.target.href; // Proceed with deletion
+			}
+			//event.target.href retrieves the href attribute of the clicked <a> tag.
+		}
+	</script>
 	<!-- <script>
         // Calculate Total when Quantity or Price changes
         document.getElementById("quantity").addEventListener("input", calculateTotal);
