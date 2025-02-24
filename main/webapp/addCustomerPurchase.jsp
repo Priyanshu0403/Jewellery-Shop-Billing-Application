@@ -9,13 +9,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
 	body {
             
             background-image: url('BackGroundImg.jpg');
             background-size:cover;
-            background-position: center;		
+            background-position: center;
+            background-attachment:fixed;		
             color: white;
         }
     .overlay {
@@ -26,6 +28,10 @@
             width : 100%;
             height: 100%;
         }
+        
+        .middlePart{
+			display:flex;
+		}
         
  	  .content {
             position: relative;
@@ -44,7 +50,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		.list-group .active{
@@ -66,14 +72,17 @@
 <body>
 <div class="overlay"></div>
 <%@include file="navbar.html" %>
-<div class="container-fluid mt-1">
+
+<div class="middlePart">
+ <%@include file="sideBarDropDownMenu.html" %> 
+<div class="container-fluid " style="margin-top:80px;padding-left:250px;" >
 	<div class="row">
-		<%@include file="sideBarDropDownMenu.html" %>
-		<div class="col col-md-10 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
+		
+		<div class="col col-md-12 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
     
         	<h3 class="mb-1 text-center">Add Customer Purchase</h3>        	
 			<div class="content ">
-				<div class="container">
+				<div class="container ">
         			<form action="addCustomerPurchase" method="post" class="shadow p-4 bg-light rounded"
         				style="width:600px"
         			>
@@ -89,58 +98,107 @@
                 			<label class="form-label">Customer Name</label>
                 			<input type="text" class="form-control" name="name"  required>
             			</div>
+            			<div class="col-md-3 mb-2 ">
             			</div>
-
-            			<div class="row">
-						<div class="col-md-6 mb-2">
+            			<div class="col-md-6 mb-2 ">
                 			<label class="form-label">Contact Number</label>
                 			<input type="text" class="form-control" name="number" required>
             			</div>
+            			
+            			</div>
+						<hr style="color: black">
+						
+						
+						<a class="btn btn-primary" href="#newItem"">Add Item</a>
+						 <br>
+						<h6>Item 1</h6>
+						
+            			<div class="row">
+						
 
             			<div class=" col-md-6 mb-2">
                 			<label class="form-label">Item Name</label>
                 			<input type="text" class="form-control" name="itemName"  required>
             			</div>
-            			</div>
+            			
 
-            			<div class="row">
+            			
                 			<div class="col-md-6 mb-2">
                     			<label class="form-label">Quantity</label>
                     			<input type="number" class="form-control" name="quantity"  required>
                 			</div>
 
                 			<div class="col-md-6 mb-2">
-                    			<label class="form-label">Weight (grams)</label>
+                    			<label class="form-label">Weight (in grams)</label>
                     			<input type="number" step="0.01" class="form-control" name="weight"  required>
                 			</div>
-            			</div>
+            			
 
-            			<div class="row">
+            			
                 			<div class="col-md-6 mb-2">
                     			<label class="form-label">Price (₹)</label>
                     			<input type="number" class="form-control" name="price" required>
-                			</div>
-
-                			<div class="col-md-6 mb-2">
-                    			<label class="form-label">Total (₹)</label>
-                    			<input type="number" class="form-control" readonly>
-                			</div>
-            			</div>
-            			
-						<div class="row">
-							<div class="col-md-3 mb-2">
-							
-							</div>
-            				<div class="col-md-6 mb-2 ">
-                				<label class="form-label">Date of Purchase</label>
-                				<input type="date" class="form-control" name="date" required>
-            				</div>
-            				<div class="col-md-3 mb-2">
-							
 							</div>
             				
             			</div>
+            			
+            			
+            			
+            			<hr style="color: black">
+            			
+            			<h6>Item 2</h6>
+            			<div class="row" id="newItem">
+						
 
+            			<!-- <div class=" col-md-6 mb-2">
+                			<label class="form-label">Item Name</label>
+                			<input type="text" class="form-control" name="itemName"  required>
+            			</div>
+            			
+
+            			
+                			<div class="col-md-6 mb-2">
+                    			<label class="form-label">Quantity</label>
+                    			<input type="number" class="form-control" name="quantity"  required>
+                			</div>
+
+                			<div class="col-md-6 mb-2">
+                    			<label class="form-label">Weight (in grams)</label>
+                    			<input type="number" step="0.01" class="form-control" name="weight"  required>
+                			</div>
+            			
+
+            			
+                			<div class="col-md-6 mb-2">
+                    			<label class="form-label">Price (₹)</label>
+                    			<input type="number" class="form-control" name="price" required>
+                			</div> -->
+
+                			
+            				
+            			</div>
+						
+						<hr style="color: black">
+						<div class="row" >
+						<div class="col-md-6 mb-2">
+                    			<label class="form-label">Total (₹)</label>
+                    			<input type="number" class="form-control" readonly>
+                			</div>
+            			
+							<div class="col-md-6 mb-2">
+								<label class="form-label">Date of Purchase</label>
+                				<input type="date" class="form-control" name="date" required>
+							</div>
+            				<div class="col-md-6 mb-2 ">
+                				<label class="form-label">Amt. Paid</label>
+                				<input type="number" class="form-control" name="paid" required>
+            				</div>
+            				<div class="col-md-6 mb-2">
+								<label class="form-label">Due Amt.</label>
+                				<input type="number" class="form-control" readonly>
+							</div>
+						</div>
+						
             			<div class="row d-flex justify-content-center gap-3 ">
             				
                 				<a href="addCustomerPurchase.jsp" class="col col-4 btn btn-danger">Cancel</a>
@@ -154,6 +212,8 @@
 		</div>
 	</div>
 </div>
+</div>
+
 	
         
         

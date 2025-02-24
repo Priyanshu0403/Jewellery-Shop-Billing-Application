@@ -10,11 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
     <style>
         body{
             background-image:url(BackGroundImg.jpg);
             background-size: cover;
             background-position: center;
+            background-attachment:fixed;
             color:white;
         }
 
@@ -27,6 +30,10 @@
             height: 100%;
         }
         
+        .middlePart{
+			display:flex;
+		}
+		
         tbody{
             color: white;
         }
@@ -34,10 +41,6 @@
         .container {
         	position: relative;
             z-index: 2;
-            margin-top: 30px;
-            display:flex;
-            flex-direction:column;
-            align-items: center;
         }
         
         /* SIDE BAR STYLING */
@@ -49,7 +52,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		/* .list-group .active{
@@ -66,11 +69,13 @@
     <div class="overlay"></div>
     <!-- Navbar -->
      <%@include file="navbar.html" %>
-   	<div class="container-fluid mt-1">
+      <div class="middlePart">
+    <%@include file="sideBarDropDownMenu.html" %>
+   	<div class="container-fluid " style="margin-top:80px;padding-left:250px;">
     <div class="row">
-			<%@include file="sideBarDropDownMenu.html" %>
+			
 				
-			<div class="col col-md-10 pt-1" style="z-index:2;">
+			<div class="col col-md-12 pt-1" style="z-index:2;">
             	<h2 class="mb-4">List of Bills</h2>
             	<div class="content">
     				<div class="container">
@@ -110,6 +115,7 @@
      </div>
       </div>
       </div>
+       </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
