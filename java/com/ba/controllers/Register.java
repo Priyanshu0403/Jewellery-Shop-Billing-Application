@@ -25,11 +25,9 @@ public class Register extends HttpServlet {
 		String uname=req.getParameter("Uname");	
 		String uemail=req.getParameter("Uemail");
 		String upass=req.getParameter("Upass");
-		
 //		System.out.println(uname);  // to check if the program is running or not
 //		System.out.println(uemail);
 //		System.out.println(upass);
-		
 		try {
 			Connection CONN = connectDB.getConnection();
 			PreparedStatement ps = CONN.prepareStatement("INSERT INTO admin_data VALUES(?,?,?)");

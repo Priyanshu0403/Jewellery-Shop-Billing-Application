@@ -11,13 +11,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
 	body {
             
             background-image: url('BackGroundImg.jpg');
             background-size:cover;
-            background-position: center;		
+            background-position: center;
+            background-attachment:fixed;		
             color: white;
         }
     .overlay {
@@ -28,7 +30,11 @@
             width : 100%;
             height: 100%;
         }
-        
+       .middlePart{
+			display:flex;
+		}
+		
+		 
  	  .content {
             position: relative;
            	z-index:2;
@@ -46,7 +52,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 70px;
+			height: 50px; 
 		}
         
 		.list-group .active{
@@ -69,10 +75,11 @@
 <body>
 <div class="overlay"></div>
 <%@include file="navbar.html" %>
-<div class="container-fluid mt-1">
+<div class="middlePart">
+    <%@include file="sideBarDropDownMenu.html" %>
+<div class="container-fluid " style="margin-top:80px;padding-left:250px;">
 	<div class="row">
-		<%@include file="sideBarDropDownMenu.html" %>
-		<div class="col col-md-10 pt-1 d-flex flex-column align-items-center" style="z-index:2;">
+		<div class="col col-md-12 pt-1 d-flex flex-column align-items-center" style="z-index:2;">
     
         	<h3 class="mb-1 text-center">Edit Customer Purchase</h3>
         	
@@ -132,14 +139,16 @@
 						
             			<div class="row">
 							<div class="col-md-3 mb-2">
-							
+								<label class="form-label">Date of Purchase</label>
+                			<input type="date" class="form-control" name="date" value="<%= c1.getDATE() %>" required>
 							</div>
             				<div class="col-md-6 mb-2 ">
-                			<label class="form-label">Date of Purchase</label>
-                			<input type="date" class="form-control" name="date" value="<%= c1.getDATE() %>" required>
-            			</div>
+                				<label class="form-label">Amount Paid (₹)</label>
+                    			<input type="number" class="form-control" name="paid" value="<%= c1.getAMOUNTPAID() %>" required>
+            				</div>
             				<div class="col-md-3 mb-2">
-							
+								<label class="form-label">Due Amount (₹)</label>
+                    			<input type="number" class="form-control" name="due" value="<%= c1.getDUEAMOUNT() %>" readonly>
 							</div>
             				
             			</div>
@@ -156,6 +165,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

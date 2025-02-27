@@ -27,12 +27,14 @@ public class updateCustomerData extends HttpServlet {
 		Double uprice = Double.parseDouble(req.getParameter("price"));
 		String userDate = req.getParameter("date");
 		LocalDate udate = LocalDate.parse(userDate); 
+		Double upaid = Double.parseDouble(req.getParameter("paid"));
+
 		
 		try {
 			
 			Connection conn = connectDB.getConnection();
 			
-			PreparedStatement ps = conn.prepareStatement("UPDATE customerpurchase SET customer_name=?,contact_number=?,item_name=?,quantity=?,weight=?,price_per_unit=?,purchase_date=? WHERE purchase_id=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE customerpurchase SET customer_name=?,contact_number=?,item_name=?,quantity=?,weight=?,price_per_unit=?,purchase_date=?,amount_paid=? WHERE purchase_id=?");
 			System.out.println("Working 1");
 			
 			ps.setString(1, uname);
@@ -42,16 +44,13 @@ public class updateCustomerData extends HttpServlet {
 			ps.setFloat(5, uweight);
 			ps.setDouble(6, uprice);
 			ps.setDate(7, java.sql.Date.valueOf(udate));
-			ps.setInt(8,uid );//the data to be set in sequence only
-			
-			System.out.println("Working 2");
+			ps.setDouble(8, upaid);
+			ps.setInt(9,uid );//the data to be set in sequence only
+								
 			int count = ps.executeUpdate();
-			System.out.println("Working 3");
-			
+								
 			if(count>0) {
-				System.out.println("Working 4");
 				RequestDispatcher rd = req.getRequestDispatcher("/editCustomerData.jsp");
-				System.out.println("Working 5");
 				rd.include(req, resp);
 			}else {
 				System.out.println("data not changed");

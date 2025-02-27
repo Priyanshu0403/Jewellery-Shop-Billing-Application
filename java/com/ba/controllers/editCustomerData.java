@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 public class editCustomerData extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//data requested from the servlet is always in type String
 		int cust_Id= Integer.parseInt(req.getParameter("ID"));
 		
 		try {
@@ -40,6 +41,8 @@ public class editCustomerData extends HttpServlet {
 				cstInfo.setPRICE(rs.getDouble("price_per_unit"));
 				cstInfo.setTOTAL(rs.getDouble("total_amount"));
 				cstInfo.setDATE(rs.getDate("purchase_date"));
+				cstInfo.setAMOUNTPAID(rs.getDouble("amount_paid"));
+				cstInfo.setDUEAMOUNT(rs.getDouble("due_amount"));
 				
 				HttpSession sess = req.getSession();
 				sess.setAttribute("editCustomer", cstInfo);
