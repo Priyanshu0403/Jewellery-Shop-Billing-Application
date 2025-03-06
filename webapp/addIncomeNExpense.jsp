@@ -110,15 +110,18 @@
                   	<h3 class="mb-1 text-center">Add New Entry</h3>
                     <div class="content">
 							<div class="container">  
-                            	<form action="addIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:500px">
+                            	<form action="addIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:100%">
                             	<div class="row">
                                 	<div class="col-md-6 mb-3">
-                                    	<label for="entreId" class="form-label">Id</label>
-                                    	<input type="number" class="form-control" name="id" id="enterId" required>
+                                    	<label for="entryId" class="form-label">Id</label>
+                                    	<input type="number" class="form-control" name="id" id="entryId" placeholder="Enter ID" required>
                                 	</div>
+                                	<%
+    									java.time.LocalDate todayDate = java.time.LocalDate.now();
+									%>
                                 	<div class="col-md-6 mb-3">
                                     	<label for="entryDate" class="form-label">Date</label>
-                                    	<input type="date" class="form-control" name="date" id="entryDate" required>
+                                    	<input type="date" class="form-control" name="date" id="entryDate" value="<%= todayDate %>" required>
                                 	</div>
                                 </div>
                                 <div class="row">
@@ -132,7 +135,7 @@
                                 	</div>
                                 	<div class="col-md-6 mb-3">
                                     	<label for="amount" class="form-label">Amount (₹)</label>
-                                    	<input type="number" class="form-control" name="amount" id="amount" required>
+                                    	<input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount" required>
                                 	</div>
                                 </div>
                                 	<div class="mb-3">
@@ -148,7 +151,7 @@
                                 	</div>
                                 	<div class="mb-3">
                                     	<label for="description" class="form-label">Description</label>
-                                        <textarea class="form-control" name="description" id="description" rows="4" required></textarea>
+                                        <textarea class="form-control" name="description" id="description" rows="4" placeholder="Give some Description" required></textarea>
                       
                                 	</div>
 									<div class="row d-flex justify-content-center gap-3 ">

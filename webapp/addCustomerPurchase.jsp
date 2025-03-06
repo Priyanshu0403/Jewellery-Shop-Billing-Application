@@ -184,10 +184,12 @@
                     			<label class="form-label">Total (₹)</label>
                     			<input type="number" class="form-control" readonly>
                 			</div>
-            			
+            				<%
+    							java.time.LocalDate todayDate = java.time.LocalDate.now();
+							%>
 							<div class="col-md-6 mb-2">
 								<label class="form-label">Date of Purchase</label>
-                				<input type="date" class="form-control" name="date" required>
+                				<input type="date" class="form-control" name="date" value="<%= todayDate %>" required>
 							</div>
             				<div class="col-md-6 mb-2 ">
                 				<label class="form-label">Amt. Paid</label>
