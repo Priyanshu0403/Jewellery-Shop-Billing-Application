@@ -1,169 +1,347 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Loan</title>
-	<link href="bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link href="navbar.css" rel="stylesheet">
-    <link href="sideBarDropDownMenu.css" rel="stylesheet">
-    <style>
-        body{
-            background-image:url(BackGroundImg.jpg);
-            background-size: cover;
-            background-position: center;
-            color:white;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Loan</title>
+<link href="bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+	rel="stylesheet">
+<link href="navbar.css" rel="stylesheet">
+<link href="sideBarDropDownMenu.css" rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+	rel="stylesheet">
 
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.6);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .content{
-            position: relative;
-            z-index: 2;
-            
-        }
+<style>
+body {
+	background-image: url(BackGroundImg.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	color: white;
+}
 
-        tbody{
-            color: white;
-        }
-        
-          .fade{
-            color: black;
-            text-align: center;
-        }
-        
-        /* SIDE BAR STYLING */
-        
-        .row .col-md-2{
-			box-shadow: 0px 10px 10px #B98522;
-		}
+.overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
-		.list-group a{
-			background-color: transparent;
-			color: white;
-			height: 70px;
-		}
-		
-		/* .list-group .active{
+.middlePart {
+	display: flex;
+}
+
+.content {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	padding-top: 2vh;
+}
+
+tbody {
+	color: white;
+}
+
+.fade {
+	color: black;
+	text-align: center;
+}
+
+.list-group a {
+	background-color: transparent;
+	color: white;
+	height: 50px;
+}
+
+/* .list-group .active{
 			color: #B98522;
 			background-color:transparent !important; 
 			border:0;
 			font-size: x-large;
 		}
 		 */
-		
-		
-		/*  side bar Styling end*/
-        
-      
-        
-    </style>
+
+/*  side bar Styling end*/
+form {
+	color: black;
+}
+
+span {
+	color: red; /* to make the field mandatory */
+}
+
+.card {
+	border: 1px solid black;
+}
+
+/* to make the table fit all the content and make it scrollable */
+.table-container {
+	max-height: 475px; /* Adjust the height as needed */
+	overflow-y: auto; /* Enable vertical scroll */
+	border: 1px solid white;
+	position: relative;
+}
+
+.table thead {
+	position: sticky;
+	top: 0;
+	border: 1px solid white;
+	background-color: #2c203d;
+	color: white;
+	width: 100%;
+}
+
+.table th, .table td {
+	
+	min-width: 30px; /* Adjust based on content */
+	min-height: 100px;
+	text-align: center;
+	border: 1px solid white;
+}
+
+.table th:nth-child(3), .table td:nth-child(3){
+	min-width: 300px;
+	max-width: 400px;
+}
+/* table end */
+</style>
 </head>
 <body>
-    <div class="overlay"></div>
-     <%@include file="navbar.html" %>
-     
-     
-     <div class="container-fluid mt-1">
-    	<div class="row">
-    			
-				<%@include file="sideBarDropDownMenu.html" %>
-			<div class="col col-md-10 pt-1" style="z-index:2;">
-   
-            	<h2 class="ms-3">New Loan</h2>
-            
-            <!-- Button to Open Modal -->
-            
-            
-            <!-- Loan Table -->
-            <div class="table-responsive">
-                <h3 class="mt-4">Loan Records</h3>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Loan Amount</th>
-                            <th>Date</th>
-                            <th>Due Date</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>₹10,000</td>
-                            <td>2025-01-28</td>
-                            <td>2025-06-28</td>
-                            <td>Gold Loan</td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>₹15,000</td>
-                            <td>2025-01-25</td>
-                            <td>2025-07-25</td>
-                            <td>Silver Loan</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">
-                Add New Loan
-            </button>
-            
-            
-        </div>
-    </div>
-    
-    <!-- Modal for Adding Loan -->
-            <div class="modal fade" id="addLoanModal" tabindex="-1" aria-labelledby="addLoanModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content text-dark">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addLoanModalLabel">Add New Loan</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="customerName" class="form-label">Customer Name</label>
-                                    <input type="text" class="form-control" id="customerName" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="loanAmount" class="form-label">Loan Amount (₹)</label>
-                                    <input type="number" class="form-control" id="loanAmount" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="loanDate" class="form-label">Date</label>
-                                    <input type="date" class="form-control" id="loanDate" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dueDate" class="form-label">Due Date</label>
-                                    <input type="date" class="form-control" id="dueDate" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="loanDescription" class="form-label">Description</label>
-                                    <input type="text" class="form-control" id="loanDescription">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add Loan</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
+	<div class="overlay"></div>
+	<%@include file="navbar.html"%>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<div class="middlePart">
+		<%@include file="sideBarDropDownMenu.html"%>
+		<div class="container-fluid "
+			style="margin-top: 80px; padding-left: 250px;">
+			<div class="row">
+				<div class="col col-md-12 pt-1" style="z-index: 2;">
+					<!-- Button to Open Modal -->
+					<div
+						class="col col-md-12 pt-1 d-flex flex-column align-items-center "
+						style="z-index: 2;">
+						<h3 class="mb-1 text-center">Add New Loan</h3>
+						<div class="content w-100">
+							<div class="container">
+								<form action="addNewLoan" method="post"
+									class="shadow p-4 bg-light rounded" style="width: 100%">
+									<div id="loanItems">
+										<div class="row">
+											<div class="col-md-3 mb-3">
+												<label for="entryLoanNo" class="form-label">Loan No.</label>
+												<input type="number" class="form-control" name="loanNo"
+													id="entryLoanNo" placeholder="Enter Loan No." required>
+											</div>
+											<%
+											java.time.LocalDate todayDate = java.time.LocalDate.now();
+											%>
+											<div class="col-md-3 mb-3">
+												<label for="entryLoanDate" class="form-label">Loan
+													Date<span>*</span>
+												</label> <input type="date" class="form-control" name="Loandate"
+													id="entryLoanDate" value="<%=todayDate%>" required>
+											</div>
+											<div class="col-md-3 mb-3">
+												<label for="entryName" class="form-label">Customer
+													Name<span>*</span>
+												</label> <input type="text" class="form-control" name="Name"
+													id="entryName" placeholder="Enter Name" required>
+											</div>
+											<div class="col-md-3 mb-3">
+												<label for="entryPhoneNo" class="form-label">Phone
+													No.<span>*</span>
+												</label> <input type="number" class="form-control" name="Number"
+													id="entryPhoneNo" placeholder="Enter Phone Number" required>
+											</div>
+											
+											<div class="col-md-3 mb-3">
+												<label for="entryGender" class="form-label">Gender
+
+												</label> 
+												<select class="form-control" name="gender" toggle="dropdown-toggle"
+													id="entryGender">
+													<option value="" disabled selected>Select Gender</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+													<option value="Other">Other</option>
+													
+												</select>
+											</div>
+											<div class="col-md-3 mb-3">
+												<label for="entryAddress" class="form-label">Address
+
+												</label> <input type="address" class="form-control" name="address"
+													id="entryAddress" placeholder="Enter Address">
+											</div>
+
+										</div>
+										<div class="rows d-flex justify-content-center">
+											<div class="col-md-3 ">
+												<button type="button" class="btn btn-outline-success"
+													onClick="addNewItem()">Add Item</button>
+											</div>
+										</div>
+										<div class="rows">
+											<div class="col-md-12 mt-3">
+												<div class="card">
+													<div class="card-body">
+														<div class="table-container"
+															style="height: 170px; display: inline-block;">
+															<table class="table ">
+																<thead>
+																	<tr>
+																		<th scope="col">Item No.</th>
+																		<th scope="col">Item Name</th>
+																		<th scope="col">Description</th>
+																		<th scope="col">Weight(in grams)</th>
+																		<th scope="col">Quantity</th>
+																		<th scope="col">Price</th>
+																		<th scope="col">Action</th>
+																	</tr>
+																</thead>
+																<tbody id="loanItemsTableBody" style="color: black">
+
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											
+												<div class="col col-md-2 mb-3">
+													<label>No. of Item</label>
+
+												</div>
+												<div class="col-md-2 mb-3">
+													<label>Total Quantity</label>
+
+												</div>
+												<div class="col-md-2 mb-3">
+													<label>Total Grams</label>
+
+												</div>
+												<div class="col-md-2 mb-3">
+													<label for="entryPrice" class="form-label">Loan
+														Grand Amount (₹)</label> <input type="number" class="form-control"
+														id="entryPrice" placeholder="Enter Loan to be Granted"
+														required>
+												</div>
+												<div class="col-md-2 mb-3">
+													<label for="entryPrice" class="form-label">Interest
+														Percentage(%)</label> <input type="number" class="form-control"
+														id="entryPrice" placeholder="Enter Interest in %" required>
+												</div>
+												<div class="col-md-2 mb-3">
+													<label for="entryPrice" class="form-label">Monthly
+														Interest Amount (₹)</label> <input type="number"
+														class="form-control" id="entryPrice" readonly>
+												</div>
+											
+										</div>
+										<div class="row">
+											<div class="col col-md-5"></div>
+											<div class="col col-md-1">
+												<button class="btn btn-success">Save</button>
+											</div>
+											<div class="col col-md-1">
+												<button class="btn btn-warning">Clear</button>
+											</div>
+											<div class="col col-md-5"></div>
+										</div>
+									</div>
+
+
+
+
+
+									<!-- <div class="row">
+                                	<div class="col-md-6 mb-3">
+                                    	<label for="entryType" class="form-label">Type</label>
+                                    	<select class="form-select" name="type" id="entryType">
+                                    		<option value="" disabled selected>Choose Type</option>
+                                        	<option value="Income">Income</option>
+                                        	<option value="Expense">Expense</option>
+                                    	</select>
+                                	</div>
+                                	<div class="col-md-6 mb-3">
+                                    	<label for="amount" class="form-label">Amount (₹)</label>
+                                    	<input type="number" class="form-control" name="amount" id="amount" required>
+                                	</div>
+                                </div>
+                                	<div class="mb-3">
+                                    	<label for="entryType" class="form-label">Category</label>
+                                    	<select class="form-select" name="category" id="entryType">
+                                    		<option value="" disabled selected>Choose a category</option>
+                                        	<option value="Gold Sell">Gold Sell</option>
+                                        	<option value="Gold Purchase">Gold Purchase</option>
+                                        	<option value="Loan Provided">Loan Provided</option>
+                                        	<option value="Loan income with interest">Loan income with interest</option>
+                                        	
+                                    	</select>
+                                	</div>
+                                	<div class="mb-3">
+                                    	<label for="description" class="form-label">Description</label>
+                                        <textarea class="form-control" name="description" id="description" rows="4" required></textarea>
+                      
+                                	</div>
+									<div class="row d-flex justify-content-center gap-3 ">
+            				
+                						<a href="addIncomeNExpense.jsp" class="col col-5 btn btn-danger">Cancel</a>
+                						<button type="submit" class="col col-5 btn btn-success">Add Income/Expense</button>
+                						<a href="displayIncomeNExpenseList" class="col col-6 btn btn-primary">Show Income/Expense List</a>
+                			
+            						</div> -->
+								</form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+    	function addNewItem(){
+    		 // Select the table body
+            let tableBody = document.getElementById("loanItemsTableBody");
+
+            // Create a new row with input fields
+            let newRow = `
+                <tr>
+                    <td><input type="text" class="form-control" name="itemNo[]" value="" readonly></td>
+                    <td><input type="text" class="form-control" name="itemName[]" placeholder="Enter Item Name" required></td>
+                    <td><textarea type="text" rows="2" class="form-control" name="description[]" placeholder="Write Description" required></textarea></td>
+                    <td><input type="number" class="form-control" name="weight[]" placeholder="Enter weight" required></td>
+                    <td><input type="number" class="form-control" name="quantity[]" placeholder="Enter quantity" required></td>
+                    <td><input type="number" class="form-control" name="price[]" placeholder="Enter price" required></td>
+                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+                </tr>
+            `;
+
+            // Append the new row to the table
+            tableBody.insertAdjacentHTML("beforeend", newRow);
+        }
+
+        function removeRow(button) {
+            // Remove the row when "Remove" button is clicked
+            button.closest("tr").remove();
+        }
+    </script>
 </body>
 </html>
-

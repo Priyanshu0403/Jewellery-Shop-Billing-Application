@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,7 @@
     <title>Jewelry Shop</title>
     <link href="bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
         body {
@@ -16,6 +20,7 @@
             background-position: center;
             color: white;
         }
+        
         .overlay {
             background-color: rgba(0, 0, 0, 0.6);
             position: fixed;
@@ -28,7 +33,7 @@
         .heading {
             font-family: 'Playfair Display', serif;
             text-align: center;
-            color: #ef9713;
+            color: #fbc06a;
             font-size: 4rem;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -45,7 +50,7 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            padding-top: 20vh;
+            padding-top: 1vh;
         }
         .btn-custom {
             background-color: #ffdd75;
@@ -66,7 +71,10 @@
     <div class="overlay"></div>
 
     <div class="content">
-        <h1 class="heading">Manikarnika Jeweller's</h1>
+    	<img alt="" src="logoLineDivider-left.png" style="height:200px;width:250px">
+    	<img alt="" src="AppLogo.png" style="height:200px;width:200px">
+    	<img alt="" src="logoLineDivider-right.png" style="height:200px;width:250px">
+        <h1 class="heading"> Manikarnika Jeweller's</h1>
         <p class="subheading">Crafting Elegance, One Jewel at a Time</p>
             <img class="w-50" src="line_divider.png" alt="divider-image">
         <div id="carouselExample" class="carousel slide ">
@@ -102,8 +110,7 @@
             <!-- <img src="tab.png" class="d-block w-100" alt="..."> -->
             <div class="text-center mt-5 d-block w-100 ">
                 <h1>Welcome to Jewellery Shop</h1>
-        		<p>Shaping the Future of Jewellery Shop Management
-</p>
+        		<p>Shaping the Future of Jewellery Shop Management</p>
               <br>
              
             </div>
@@ -124,7 +131,7 @@
       
         
         <div class="mt-4">
-            <a href="#login" class="btn btn-custom btn-lg me-3" data-bs-toggle="modal">Login</a>
+            <a href="#login" onclick="load_Customer_Data()" class="btn btn-custom btn-lg me-3" data-bs-toggle="modal">Login</a>
             <a href="#signup" class="btn btn-custom btn-lg" data-bs-toggle="modal">Sign Up</a>
         </div>
     </div>
@@ -188,5 +195,42 @@
 
     <!-- Bootstrap JS -->
     <script src="bootstrap.bundle.min.js"></script>
+   <script>
+    	function load_Customer_Data() {
+        	console.log("Fetching Customer data...");
+        	console.log("Fetching Income and Expense data...");
+        
+        // Create an XMLHttpRequest object
+        
+        	var xhr1 = new XMLHttpRequest();
+			xhr1.open("GET", "displayList", true);
+			xhr1.onload = function() {
+    			console.log("Response from displayList:", xhr1.responseText);
+			};
+			xhr1.send();
+			
+			
+			var xhr2 = new XMLHttpRequest();
+			xhr2.open("GET", "displayIncomeNExpenseList", true);
+			xhr2.onload = function() {
+			    console.log("Response from displayIncomeNExpenseList:", xhr2.responseText);
+			};
+			xhr2.send(); // Send the request
+ 
+        	
+        	
+        	/* // First request
+fetch("displayList")
+    .then(response => response.text())
+    .then(data => console.log("Response from displayList:", data))
+    .catch(error => console.error("Error:", error));
+
+// Second request
+fetch("displayIncomeNExpenseList")
+    .then(response => response.text())
+    .then(data => console.log("Response from displayIncomeNExpenseList:", data))
+    .catch(error => console.error("Error:", error)); */
+    }
+    </script>
 </body>
 </html>

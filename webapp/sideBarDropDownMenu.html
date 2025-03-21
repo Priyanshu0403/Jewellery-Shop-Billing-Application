@@ -1,24 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+	<style>
+		.dropdown .btn:hover{
+			background-color:white !important;
+				
+			color:black !important;
+		}
+		 .list-group a{
+			background-color: transparent;
+			color: white;
+			height: 50px;
+		} 
+		/*  side bar Styling end*/
+</style>
+</head>
 
-			
-			
-<div class="col col-md-2 border-end border-bottom border-light " style="background-color:transparent;height:620px;">
+<body>
+   <div class="sidebar border-end border-bottom border-light position-fixed" style="background-color:transparent;width: 225px;height: 100vh;padding-top: 5rem;">
     <div class="list-group fw-bold" style="border-radius:0px ; background-color:transparent; color: white ;height: 50px;">
-        <a href="adminDashboard.jsp" class="list-group-item list-group-item-action">Dashboard</a> <!-- active -->
+        <a href="adminDashboard.jsp" onclick="load_Customer_Data()" class="list-group-item list-group-item-action">Dashboard</a> <!-- active -->
         
         
         <div class="dropdown">
-            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" id="loanDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
+            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
                 Customer Purchases
             </button>
-            <ul class="dropdown-menu w-100 bg-dark fw-bold" aria-labelledby="loanDropdown" style="color:white">
-                <li><a class="dropdown-item" href="addCustomerPurchase.jsp">Add New Cusotmer</a></li>
+            <ul class="dropdown-menu w-100 bg-dark fw-bold" >
+                <li><a class="dropdown-item" href="addCustomerPurchase.jsp">Add New Customer</a></li>
                 <li><a class="dropdown-item" href="displayList">Show Customer List</a></li>
             </ul>
         </div>
         
+        <div class="dropdown">
+            <button class="btn dropdown-toggle w-100 h-100 text-start fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent ; color:white">
+                Income & Expenses
+            </button>
+            <ul class="dropdown-menu w-100 bg-dark fw-bold" style="color:white">
+                <li><a class="dropdown-item" href="addIncomeNExpense.jsp">Add New Income/Expense</a></li>
+                <li><a class="dropdown-item" href="displayIncomeNExpenseList">Show Income/Expense List</a></li>
+            </ul>
+        </div>
         
-        
-        <a href="incomeNexpense.jsp" class="list-group-item list-group-item-action">Income & Expenses</a>
         <a href="billList.jsp" class="list-group-item list-group-item-action">List of Bills</a>
 		
         <!-- Dropdown for Loans -->
@@ -27,14 +53,45 @@
                 Loans
             </button>
             <ul class="dropdown-menu w-100 bg-dark fw-bold" aria-labelledby="loanDropdown" style="color:white">
-                <li><a class="dropdown-item" href="loanProvided.jsp">Loans Provided</a></li>
-                <li><a class="dropdown-item" href="newLoan.jsp">New Loan</a></li>
+            	<li><a class="dropdown-item" href="newLoan.jsp">New Loan</a></li>
+            	<li><a class="dropdown-item" href="loanProvided.jsp">Loans Provided</a></li>
             </ul>
         </div>
-
-        <a href="invoice.jsp" class="list-group-item list-group-item-action">Generate Invoice</a>
+		
+		<!-- here refer to the display Invoice data is done so that it fetches the customer data and add that data to the invoice page -->
+        <a href="displayInvoiceData" class="list-group-item list-group-item-action">Generate Invoice</a>
     </div>
 </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+   <script>
+    	function load_Customer_Data() {
+        	console.log("Fetching Customer data...");
+        	console.log("Fetching Income and Expense data...");
+        
+        // Create an XMLHttpRequest object
+        
+        	var xhr1 = new XMLHttpRequest();
+			xhr1.open("GET", "displayList", true);
+			xhr1.onload = function() {
+    			console.log("Response from displayList:", xhr1.responseText);
+			};
+			xhr1.send();
+			
+			
+			var xhr2 = new XMLHttpRequest();
+			xhr2.open("GET", "displayIncomeNExpenseList", true);
+			xhr2.onload = function() {
+			    console.log("Response from displayIncomeNExpenseList:", xhr2.responseText);
+			};
+			xhr2.send(); // Send the request
+ 
+        	
+        	
+        	
+    }
+    </script>
+</body>
+</html>
 
-<!-- Bootstrap JS (Required for Dropdown to Work) -->
+
 			
