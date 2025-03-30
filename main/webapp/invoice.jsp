@@ -53,7 +53,7 @@
 		
 		/* to make the table fit all the content and make it scrollable */
 		.table-container {
-    		max-height: 300px; /* Adjust the height as needed */
+    		max-height: 450px; /* Adjust the height as needed */
     		overflow-y: auto; /* Enable vertical scroll */
     		border: 1px solid white;
     		position: relative;
@@ -63,6 +63,8 @@
     		position: sticky;
     		top: 0;
     		z-index: 1000;
+    		border: 1px solid #ced2d2;
+    		
   		}
   		.table th, .table td {
     		min-width:0px; /* Adjust based on content */
@@ -85,7 +87,7 @@
 					<div class="col col-md-12 pt-1" style="z-index:2;">
    						<div class="row">
 					<div class="col col-4">
-            			<h2 class="mb-4" style="color:white;">Invoice Generator</h2>
+            			<h2 class="mb-2" style="color:white;">Invoice Generator</h2>
             		</div>
             		<div class="col col-4">
             		</div>
@@ -99,7 +101,7 @@
             
             
 
-                <h3 class="mt-4" style="color:white;">Generated Invoices</h3>
+                <h4 class="mt-1" style="color:white;">Generated Invoices</h4>
 			
             <!-- Invoice Table -->
             <div class="table-container">
@@ -119,7 +121,7 @@
 						for(customerInfo cst2:cst1){
 					
 					%>
-                    <tbody>
+                    <tbody class="table-secondary">
                         <tr>
                             <td>INV<%= cst2.getID() %></td>
                             <td><%= cst2.getCUSTOMERNAME() %></td>

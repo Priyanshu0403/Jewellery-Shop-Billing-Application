@@ -73,17 +73,17 @@
 				 					padding: 10px;background: #f9f9f9;border-radius: 0px; ">
                 						<div class="header d-flex flex-col ">
                 							<img  alt="" src="AppLogo.png" style="width:100px;height:100px">
-                							<div class="Text pt-3">
+                							<div class="Text pt-3 pe-5">
             									<h3 class="mb-1" >
             										MANIKARNIKA JEWELLERS
             									</h3>
             									<p class="subheading ">Crafting Elegance, One Jewel at a Time</p>
             								</div>
-            								<div class="BillNoInfo pt-4">
+            								<div class="BillNoInfo pt-4 ps-5">
             									<p>Invoice Number  <%= cst3.getID() %> </p>
+            									<!-- <p>Invoice Number 5674</p>
             									<p>Invoice Number 5674</p>
-            									<p>Invoice Number 5674</p>
-            									<p>Invoice Number 5674</p>
+            									<p>Invoice Number 5674</p> -->
             								</div>
             
                 						</div>
@@ -110,7 +110,7 @@
                         							<th>Total (&#8377;)</th>
                     							</tr>
                 							</thead>
-                							<tbody>
+                							<tbody >
                     							<tr>
                         							<td><%= cst3.getITEMNAME() %></td>
                         							<td><%= cst3.getQUANTITY() %></td>
@@ -122,7 +122,7 @@
             							</table>
 
             							<div class="text-end mb-4">
-                							<h5><strong>Grand Total: &#8377; ?0000</strong></h5>
+                							<h5><strong>Grand Total: &#8377; <%= cst3.getTOTAL() %></strong></h5>
             							</div>
             						</div>
 								</div>	

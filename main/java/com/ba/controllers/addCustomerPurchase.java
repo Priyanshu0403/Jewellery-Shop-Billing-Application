@@ -42,7 +42,7 @@ public class addCustomerPurchase extends HttpServlet{
 		
 		try {
 			Connection CONN = connectDB.getConnection();
-			PreparedStatement ps = CONN.prepareStatement("INSERT INTO customerpurchase(purchase_id,customer_name,contact_number,item_name,quantity,weight,price_per_unit,purchase_date,amount_paid) VALUES(?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps = CONN.prepareStatement("INSERT INTO customer_purchase_backup(purchase_id,customer_name,contact_number,item_name,quantity,weight,price_per_unit,purchase_date,amount_paid) VALUES(?,?,?,?,?,?,?,?,?)");
 			ps.setInt(1, uId);
 			ps.setString(2,uName);
 			ps.setString(3,uNumber);

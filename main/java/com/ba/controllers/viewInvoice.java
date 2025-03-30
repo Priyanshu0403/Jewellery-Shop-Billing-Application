@@ -27,7 +27,7 @@ public class viewInvoice extends HttpServlet {
 		try {
 			Connection conn = connectDB.getConnection();
 
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customerpurchase WHERE purchase_id=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customer_purchase_backup WHERE purchase_id=?");
 			ps.setInt(1, invoice_Id);
 			
 

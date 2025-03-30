@@ -25,7 +25,7 @@ public class customerInvoiceData extends HttpServlet{
 		List<customerInfo> c1 = new ArrayList<customerInfo>();
 		try {
 			Connection conn = connectDB.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customerpurchase");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customer_purchase_backup");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				customerInfo cst1 = new customerInfo();

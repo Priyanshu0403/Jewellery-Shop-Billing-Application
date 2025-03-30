@@ -9,14 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
         body{
             background-image:url(BackGroundImg.jpg);
             background-size: cover;
             background-position: center;
-            background-attachment:fixed;
             color:white;
         }
 
@@ -27,20 +25,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            
         }
-		.middlePart{
-			display:flex;
-		}
+
         .content{
             position: relative;
             z-index: 2;
             text-align: center;
             padding-top: 2vh;
         }
-        
-        
-        
         
         
         /* SIDE BAR STYLING */
@@ -52,7 +44,7 @@
 		 .list-group a{
 			background-color: transparent;
 			color: white;
-			height: 50px; 
+			/* height: 70px; */
 		} 
 		
 		
@@ -99,78 +91,49 @@
 <body>
 	<div class="overlay "></div>
     <%@include file="navbar.html" %>
-    
-    <div class="middlePart">
-    <%@include file="sideBarDropDownMenu.html" %>  <!--  --> 
-    <div class="container-fluid" style="margin-top:80px;padding-left:250px;">
+    <div class="container-fluid mt-1">
     	<div class="row">
     			
-			
-            	<div class="col col-md-12 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
+			<%@include file="sideBarDropDownMenu.html" %>
+            	<div class="col col-md-10 pt-1 d-flex flex-column align-items-center " style="z-index:2;">
                   	<h3 class="mb-1 text-center">Add New Entry</h3>
                     <div class="content">
 							<div class="container">  
-                            	<form action="addIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:100%">
-                            	<div class="row">
-                                	<div class="col-md-6 mb-3">
-                                    	<label for="entryId" class="form-label">Id</label>
-                                    	<input type="number" class="form-control" name="id" id="entryId" placeholder="Enter ID" required>
-                                	</div>
-                                	<%
-    									java.time.LocalDate todayDate = java.time.LocalDate.now();
-									%>
-                                	<div class="col-md-6 mb-3">
+                            	<form action="addIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:500px">
+                                	<div class="mb-3">
                                     	<label for="entryDate" class="form-label">Date</label>
-                                    	<input type="date" class="form-control" name="date" id="entryDate" value="<%= todayDate %>" required>
+                                    	<input type="date" class="form-control" name="date" id="entryDate" required>
                                 	</div>
-                                </div>
-                                <div class="row">
-                                	<div class="col-md-6 mb-3">
+                                	<div class="mb-3">
                                     	<label for="entryType" class="form-label">Type</label>
                                     	<select class="form-select" name="type" id="entryType">
-                                    		<option value="" disabled selected>Choose Type</option>
-                                        	<option value="Income">Income</option>
-                                        	<option value="Expense">Expense</option>
+                                        	<option value="income">Income</option>
+                                        	<option value="expense">Expense</option>
                                     	</select>
                                 	</div>
-                                	<div class="col-md-6 mb-3">
-                                    	<label for="amount" class="form-label">Amount (₹)</label>
-                                    	<input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount" required>
-                                	</div>
-                                </div>
                                 	<div class="mb-3">
-                                    	<label for="entryType" class="form-label">Category</label>
-                                    	<select class="form-select" name="category" id="entryType">
-                                    		<option value="" disabled selected>Choose a category</option>
-                                        	<option value="Gold Sell">Gold Sell</option>
-                                        	<option value="Gold Purchase">Gold Purchase</option>
-                                        	<option value="Loan Provided">Loan Provided</option>
-                                        	<option value="Loan income with interest">Loan income with interest</option>
-                                        	
-                                    	</select>
+                                    	<label for="amount" class="form-label">Amount (₹)</label>
+                                    	<input type="number" class="form-control" name="amount" id="amount" required>
                                 	</div>
                                 	<div class="mb-3">
                                     	<label for="description" class="form-label">Description</label>
-                                        <textarea class="form-control" name="description" id="description" rows="4" placeholder="Give some Description" required></textarea>
-                      
+                                    	<input type="text" class="form-control" name="description" id="description" required>
                                 	</div>
 									<div class="row d-flex justify-content-center gap-3 ">
             				
                 						<a href="addIncomeNExpense.jsp" class="col col-5 btn btn-danger">Cancel</a>
                 						<button type="submit" class="col col-5 btn btn-success">Add Income/Expense</button>
-                						<a href="displayIncomeNExpenseList" class="col col-6 btn btn-primary">Show Income/Expense List</a>
+                						<a href="incomeNexpense.jsp" class="col col-6 btn btn-primary">Show Income/Expense List</a>
                 			
             						</div>
             					</form>
-            					
                             	
            					</div> 
            				</div> 
            			</div> 
            		</div> 
            	</div> 
-         </div>
                         
-   	    <script src="bootstrap.bundle.min.js"></script>
+   	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

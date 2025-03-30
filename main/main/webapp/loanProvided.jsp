@@ -10,24 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="sideBarDropDownMenu.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     
     <style>
         body {
             background-image: url('BackGroundImg.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment:fixed;
             color: white;
         }
         .container {
         	position: relative;
             z-index: 2;
-           
+            margin-top: 30px;
+            display:flex;
+            flex-direction:column;
+            align-items: center;
         }
-        .middlePart{
-			display:flex;
-		}
+        
         .overlay {
             background-color: rgba(0, 0, 0, 0.6);
             position:fixed;
@@ -51,7 +50,7 @@
 		.list-group a{
 			background-color: transparent;
 			color: white;
-			height: 50px; 
+			height: 70px;
 		}
         
 		.list-group .active{
@@ -68,14 +67,11 @@
 	<div class="overlay"></div>
 	
 		<%@include file="navbar.html" %>
-		
-		<div class="middlePart">
-    <%@include file="sideBarDropDownMenu.html" %> 
-		<div class="container-fluid " style="margin-top:80px;padding-left:250px;">
+		<div class="container-fluid mt-1">
 		<div class="row">
-			
+			<%@include file="sideBarDropDownMenu.html" %>
 				
-			<div class="col col-md-12 pt-1" style="z-index:2;">
+			<div class="col col-md-10 pt-1" style="z-index:2;">
 				<h2 class="ms-3">Loan Management</h2>
 				<div class="content">
     				<div class="container">
@@ -115,8 +111,10 @@
             				</div>
         				</div>
          <!-- Add Loan Button -->
-        					
-        			<a class="btn btn-primary mb-3" href="newLoan.jsp">Add New Loan</a>
+        					<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addLoanModal">
+            					Add New Loan
+        					</button>
+        
         
     				</div>
     			</div>
@@ -168,9 +166,9 @@
             	</div>
         	</div>
     	</div>	
-</div>
+
     <!-- Bootstrap JS for Modal -->
-    <script src="bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
