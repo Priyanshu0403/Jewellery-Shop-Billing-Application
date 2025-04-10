@@ -119,7 +119,7 @@ tbody {
 						</div>
 						<div class="col col-4"></div>
 						<div class="col col-4">
-							<form class="d-flex" role="search">
+							<form class="d-flex" role="search"  onsubmit="return false;">
 								<input id="searchInput" class="form-control me-2" type="search"
 									placeholder="Search Income / Expense" aria-label="Search"
 									onkeyup="searchTable()">

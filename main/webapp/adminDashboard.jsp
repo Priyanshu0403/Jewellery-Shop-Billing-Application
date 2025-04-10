@@ -1,6 +1,9 @@
+<%@ page import="java.sql.*, java.util.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
-<%@page import="com.ba.model.customerInfo"%>
+<%-- <%@page import="com.ba.model.customerInfo"%> --%>
+<%@ page import="com.ba.dao.connectDB"%>
+
 <%@ page import="com.ba.model.incomeNExpense_data"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -76,35 +79,52 @@ tbody {
 	<%@include file="navbar.html"%>
 	<div class="middlePart">
 		<%@include file="sideBarDropDownMenu.html"%>
-		<div class="container-fluid" style="margin-top: 80px; padding-left: 250px;">
+		<div class="container-fluid"
+			style="margin-top: 80px; padding-left: 250px;">
 			<div class="row">
 				<div class="col col-md-12 pt-1" style="z-index: 2;">
 					<h2 class="ms-3 ">Welcome to the Admin Dashboard</h2>
 
 					<%
 					int totalCustomer = 0;
-					List<customerInfo> cust1 = (List<customerInfo>) session.getAttribute("cst_list");
+					/* List<customerInfo> cust1 = (List<customerInfo>) session.getAttribute("cst_list");
 					if (cust1 != null && !cust1.isEmpty()) {
 						for (customerInfo cust2 : cust1) {
 							totalCustomer += 1;
 						}
+					} */
+
+					try {
+						Connection conn = connectDB.getConnection();
+						String query = "SELECT COUNT(*) AS total_customer FROM customer_detail";
+						PreparedStatement ps = conn.prepareStatement(query);
+						ResultSet rs = ps.executeQuery();
+						if (rs.next()) {
+							totalCustomer = rs.getInt("total_customer");
+						}
+						rs.close();
+						ps.close();
+						conn.close();
+
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
+
 					double totalIncome = 0;
 					double totalExpense = 0;
 					Set<incomeNExpense_data> s1 = (Set<incomeNExpense_data>) session.getAttribute("InNEx_list");
 					if (s1 != null && !s1.isEmpty()) {
 						for (incomeNExpense_data s2 : s1) {
-							if (s2.getTYPE().equals("Income")) { //s2.getType()==income is not allowed as in java string can't be compared using comparision operator
-						totalIncome += s2.getAMOUNT();
-
+							if (s2.getTYPE().equals("Income")) {
+						//s2.getType()==income is not allowed as in java string can't be compared using comparision operator
+								totalIncome += s2.getAMOUNT(); 
 							} else if (s2.getTYPE().equals("Expense")) {
-						totalExpense += s2.getAMOUNT();
+								totalExpense += s2.getAMOUNT();
 
 							}
 						}
 					}
 					%>
-
 					<!-- Content Area -->
 					<div class="col ">
 						<!--                     <h2 class="mb-4">Welcome to the Admin Dashboard</h2>

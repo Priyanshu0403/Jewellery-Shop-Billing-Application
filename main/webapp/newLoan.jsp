@@ -100,14 +100,13 @@ span {
 }
 
 .table th, .table td {
-	
 	min-width: 30px; /* Adjust based on content */
 	min-height: 100px;
 	text-align: center;
 	border: 1px solid white;
 }
 
-.table th:nth-child(3), .table td:nth-child(3){
+.table th:nth-child(3), .table td:nth-child(3) {
 	min-width: 300px;
 	max-width: 400px;
 }
@@ -128,7 +127,7 @@ span {
 					<div
 						class="col col-md-12 pt-1 d-flex flex-column align-items-center "
 						style="z-index: 2;">
-						<h3 class="mb-1 text-center">Add New Loan</h3>
+						<h3 class="mb-1 text-center">New Loan</h3>
 						<div class="content w-100">
 							<div class="container">
 								<form action="addNewLoan" method="post"
@@ -138,7 +137,7 @@ span {
 											<div class="col-md-3 mb-3">
 												<label for="entryLoanNo" class="form-label">Loan No.</label>
 												<input type="number" class="form-control" name="loanNo"
-													id="entryLoanNo" placeholder="Enter Loan No." required>
+													id="entryLoanNo" placeholder="Enter Loan No." readonly>
 											</div>
 											<%
 											java.time.LocalDate todayDate = java.time.LocalDate.now();
@@ -146,33 +145,31 @@ span {
 											<div class="col-md-3 mb-3">
 												<label for="entryLoanDate" class="form-label">Loan
 													Date<span>*</span>
-												</label> <input type="date" class="form-control" name="Loandate"
+												</label> <input type="date" class="form-control" name="loanDate"
 													id="entryLoanDate" value="<%=todayDate%>" required>
 											</div>
 											<div class="col-md-3 mb-3">
 												<label for="entryName" class="form-label">Customer
 													Name<span>*</span>
-												</label> <input type="text" class="form-control" name="Name"
+												</label> <input type="text" class="form-control" name="name"
 													id="entryName" placeholder="Enter Name" required>
 											</div>
 											<div class="col-md-3 mb-3">
-												<label for="entryPhoneNo" class="form-label">Phone
-													No.<span>*</span>
-												</label> <input type="number" class="form-control" name="Number"
+												<label for="entryPhoneNo" class="form-label">Contact
+													Number<span>*</span>
+												</label> <input type="number" class="form-control" name="number"
 													id="entryPhoneNo" placeholder="Enter Phone Number" required>
 											</div>
-											
-											<div class="col-md-3 mb-3">
-												<label for="entryGender" class="form-label">Gender
 
-												</label> 
-												<select class="form-control" name="gender" toggle="dropdown-toggle"
-													id="entryGender">
+											<div class="col-md-3 mb-3">
+												<label for="entryGender" class="form-label">Gender </label>
+												<select class="form-select" name="gender"
+													toggle="dropdown-toggle" id="entryGender">
 													<option value="" disabled selected>Select Gender</option>
 													<option value="Male">Male</option>
 													<option value="Female">Female</option>
 													<option value="Other">Other</option>
-													
+
 												</select>
 											</div>
 											<div class="col-md-3 mb-3">
@@ -217,90 +214,44 @@ span {
 											</div>
 										</div>
 										<div class="row">
-											
-												<div class="col col-md-2 mb-3">
-													<label>No. of Item</label>
 
-												</div>
-												<div class="col-md-2 mb-3">
-													<label>Total Quantity</label>
+											<div class="col col-md-2 mb-3">
+												<label>No. of Item</label>
 
-												</div>
-												<div class="col-md-2 mb-3">
-													<label>Total Grams</label>
+											</div>
+											<div class="col-md-2 mb-3">
+												<label>Total Quantity</label>
 
-												</div>
-												<div class="col-md-2 mb-3">
-													<label for="entryPrice" class="form-label">Loan
-														Grand Amount (₹)</label> <input type="number" class="form-control"
-														id="entryPrice" placeholder="Enter Loan to be Granted"
-														required>
-												</div>
-												<div class="col-md-2 mb-3">
-													<label for="entryPrice" class="form-label">Interest
-														Percentage(%)</label> <input type="number" class="form-control"
-														id="entryPrice" placeholder="Enter Interest in %" required>
-												</div>
-												<div class="col-md-2 mb-3">
-													<label for="entryPrice" class="form-label">Monthly
-														Interest Amount (₹)</label> <input type="number"
-														class="form-control" id="entryPrice" readonly>
-												</div>
-											
+											</div>
+											<div class="col-md-2 mb-3">
+												<label>Total Grams</label>
+
+											</div>
+											<div class="col-md-2 mb-3">
+												<label for="entryPrice" class="form-label">Loan
+													Grand Amount (₹)</label> <input type="number" class="form-control"
+													id="entryPrice" name="grandAmt" placeholder="Enter Loan to be Granted"
+													required>
+											</div>
+											<div class="col-md-2 mb-3">
+												<label for="entryPrice" class="form-label">Interest
+													Percentage(%)</label> <input type="number" class="form-control"
+													id="entryPrice" name="interest" placeholder="Enter Interest in %" required>
+											</div>
+											<div class="col-md-2 mb-3">
+												<label for="entryPrice" class="form-label">Monthly
+													Interest Amount (₹)</label> <input type="number"
+													class="form-control" id="entryPrice" readonly>
+											</div>
+
 										</div>
-										<div class="row">
-											<div class="col col-md-5"></div>
-											<div class="col col-md-1">
-												<button class="btn btn-success">Save</button>
-											</div>
-											<div class="col col-md-1">
-												<button class="btn btn-warning">Clear</button>
-											</div>
-											<div class="col col-md-5"></div>
+										<div class="row d-flex justify-content-center gap-3">
+											<button type="submit" class="col col-3 btn btn-success">Save</button>
+											<a href="newLoan.jsp" class="col col-3 btn btn-warning">Cancel</a>
+
+
 										</div>
 									</div>
-
-
-
-
-
-									<!-- <div class="row">
-                                	<div class="col-md-6 mb-3">
-                                    	<label for="entryType" class="form-label">Type</label>
-                                    	<select class="form-select" name="type" id="entryType">
-                                    		<option value="" disabled selected>Choose Type</option>
-                                        	<option value="Income">Income</option>
-                                        	<option value="Expense">Expense</option>
-                                    	</select>
-                                	</div>
-                                	<div class="col-md-6 mb-3">
-                                    	<label for="amount" class="form-label">Amount (₹)</label>
-                                    	<input type="number" class="form-control" name="amount" id="amount" required>
-                                	</div>
-                                </div>
-                                	<div class="mb-3">
-                                    	<label for="entryType" class="form-label">Category</label>
-                                    	<select class="form-select" name="category" id="entryType">
-                                    		<option value="" disabled selected>Choose a category</option>
-                                        	<option value="Gold Sell">Gold Sell</option>
-                                        	<option value="Gold Purchase">Gold Purchase</option>
-                                        	<option value="Loan Provided">Loan Provided</option>
-                                        	<option value="Loan income with interest">Loan income with interest</option>
-                                        	
-                                    	</select>
-                                	</div>
-                                	<div class="mb-3">
-                                    	<label for="description" class="form-label">Description</label>
-                                        <textarea class="form-control" name="description" id="description" rows="4" required></textarea>
-                      
-                                	</div>
-									<div class="row d-flex justify-content-center gap-3 ">
-            				
-                						<a href="addIncomeNExpense.jsp" class="col col-5 btn btn-danger">Cancel</a>
-                						<button type="submit" class="col col-5 btn btn-success">Add Income/Expense</button>
-                						<a href="displayIncomeNExpenseList" class="col col-6 btn btn-primary">Show Income/Expense List</a>
-                			
-            						</div> -->
 								</form>
 
 
@@ -314,8 +265,7 @@ span {
 
 	</div>
 
-	<script
-		src="bootstrap.bundle.min.js"></script>
+	<script src="bootstrap.bundle.min.js"></script>
 	<script>
     	function addNewItem(){
     		 // Select the table body

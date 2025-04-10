@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+	
+</head>
 <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#855e18"> <!-- bg-dark -->
         <div class="container-fluid">
@@ -9,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="adminDashboard.jsp">Dashboard</a>
+                        <a class="nav-link active" href="adminDashboard.jsp" onclick="load_Customer_Data()">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link bg-danger rounded" href="index.jsp">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
@@ -18,3 +26,33 @@
             </div>
         </div>
     </nav>
+    
+    <script>
+    	function load_Customer_Data() {
+        	console.log("Fetching Customer data...");
+        	console.log("Fetching Income and Expense data...");
+        
+        // Create an XMLHttpRequest object
+        
+        	var xhr1 = new XMLHttpRequest();
+			xhr1.open("GET", "displayList", true);
+			xhr1.onload = function() {
+    			console.log("Response from displayList:", xhr1.responseText);
+			};
+			xhr1.send();
+			
+			
+			var xhr2 = new XMLHttpRequest();
+			xhr2.open("GET", "displayIncomeNExpenseList", true);
+			xhr2.onload = function() {
+			    console.log("Response from displayIncomeNExpenseList:", xhr2.responseText);
+			};
+			xhr2.send(); // Send the request
+ 
+        	
+        	
+        	
+    }
+    </script>
+</body>
+</html>

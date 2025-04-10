@@ -112,9 +112,7 @@
 							<div class="container">  
                             	<form action="addIncomeNExpenseData" method="post"  class="shadow p-4 bg-light rounded" style="width:100%">
                             	<div class="row">
-                                	<div class="col-md-6 mb-3">
-                                    	<label for="entryId" class="form-label">Id</label>
-                                    	<input type="number" class="form-control" name="id" id="entryId" placeholder="Enter ID" required>
+                                	<div class="col-md-3 mb-3">
                                 	</div>
                                 	<%
     									java.time.LocalDate todayDate = java.time.LocalDate.now();
@@ -127,7 +125,7 @@
                                 <div class="row">
                                 	<div class="col-md-6 mb-3">
                                     	<label for="entryType" class="form-label">Type</label>
-                                    	<select class="form-select" name="type" id="entryType">
+                                    	<select class="form-select" name="type" id="entryType" required>
                                     		<option value="" disabled selected>Choose Type</option>
                                         	<option value="Income">Income</option>
                                         	<option value="Expense">Expense</option>

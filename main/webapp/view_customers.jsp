@@ -1,12 +1,14 @@
-<%-- <%@page import="java.util.List"%>
-<%@page import="com.ba.model.customerInfo"%>
+<%@ page import="java.sql.*, java.util.*"%>
+<%@ page import="com.ba.dao.connectDB"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Customer Purchase Details</title>
+<title>Customer Details</title>
+
 <link href="bootstrap.min.css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
@@ -113,7 +115,6 @@ tbody {
 </head>
 <body>
 	<div class="overlay"></div>
-
 	<%@include file="navbar.html"%>
 	<div class="middlePart">
 		<%@include file="sideBarDropDownMenu.html"%>
@@ -121,25 +122,21 @@ tbody {
 			style="margin-top: 80px; padding-left: 230px;">
 			<div class="row">
 				<div class="col col-md-12 pt-1" style="z-index: 2;">
-				<%
-    List<customerInfo> cust1 = (List<customerInfo>) session.getAttribute("cst_list");
-    int totalCustomers = (cust1 != null) ? cust1.size() : 0; // Calculate customer count here
-%>
+
 					<div class="row ">
 						<div class="col col-5">
 							<h2 class="ms-3">
-								<i class="fa-solid fa-users"></i> Customer Purchase Details
+								<i class="fa-solid fa-users"></i> Customer Details
 							</h2>
 						</div>
 						<div class="col col-4 mt-2">
-							<h5>Total Number Of Customers: <%= totalCustomers %></h5>
+							<h5>
 						</div>
 						<div class="col col-3">
 							<form class="d-flex" role="search">
 								<input id="searchInput" class="form-control me-2" type="search"
 									placeholder="Search Customer Purchase" aria-label="Search"
 									onkeyup="searchTable()">
-									
 								<button class="btn btn-light" type="submit">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
@@ -151,61 +148,87 @@ tbody {
 
 					<div class="content">
 						<div class="table-container">
-							<table class="table table-bordered ">
+
+
+
+							<table class="table table-bordered">
 								<thead class="table-dark">
 									<tr>
-										<th>ID</th>
+										<th>Customer ID</th>
 										<th>Customer Name</th>
 										<th>Contact No.</th>
-										<th>Item Name</th>
-										<th>Qty.</th>
-										<th>Weight</th>
-										<th>Price</th>
-										<th>Total</th>
-										<th>Date</th>
-										<th>Paid</th>
-										<th>Due Amt.</th>
-										<th>Action</th>
+										<th>Gender</th>
+										<th>Total Amount</th>
+										<th>View</th>
+										<th>Actions</th>
 									</tr>
 								</thead>
-								<%
-/* 								List<customerInfo> cust1 = (List<customerInfo>) session.getAttribute("cst_list");
- */								if (cust1 != null && !cust1.isEmpty()) {
-									for (customerInfo cust2 : cust1) {
-								%>
 								<tbody class="table-secondary" id="tableData">
+									<%
+									Connection conn = connectDB.getConnection();
+									String query = "SELECT customer_id, name, contact_no, gender FROM customer_detail";
+									PreparedStatement ps = conn.prepareStatement(query);
+									ResultSet rs = ps.executeQuery();
+
+									while (rs.next()) {
+										int customerId = rs.getInt("customer_id");
+										String name = rs.getString("name");
+										String contactNo = rs.getString("contact_no");
+										String gender = rs.getString("gender");
+
+										// Now fetch total for this customer
+										String totalQuery = "SELECT total FROM customer_purchases WHERE customer_id = ?";
+										PreparedStatement totalStmt = conn.prepareStatement(totalQuery);
+										totalStmt.setInt(1, customerId);
+										ResultSet totalRs = totalStmt.executeQuery();
+
+										double totalAmount = 0;
+										while (totalRs.next()) {
+											totalAmount += totalRs.getDouble("total");
+										}
+									%>
 									<tr>
-										<td scope="row"><%=cust2.getID()%></td>
-										<td><%=cust2.getCUSTOMERNAME()%></td>
-										<td><%=cust2.getCONTACTNUMBER()%></td>
-										<td><%=cust2.getITEMNAME()%></td>
-										<td><%=cust2.getQUANTITY()%></td>
-										<td><%=cust2.getWEIGHT()%> g</td>
-										<td>₹ <%=cust2.getPRICE()%></td>
-										<!-- Ctrl + Alt + 4  for rupee symbol -->
-										<td>₹ <%=cust2.getTOTAL()%></td>
-										<td><%=cust2.getDATE()%></td>
-										<td>₹ <%=cust2.getAMOUNTPAID()%></td>
-										<td>₹ <%=cust2.getDUEAMOUNT()%></td> 
-										<td><a href="editCustomerData?ID=<%=cust2.getID()%>"
+										<td><%=customerId%></td>
+										<td><%=name%></td>
+										<td><%=contactNo%></td>
+										<td><%=gender%></td>
+										<td>₹<%=totalAmount%></td>
+										<td><a
+											href="customerPurchases.jsp?customer_id=<%=customerId%>"
+											class="btn btn-info btn-sm"> View Purchases </a></td>
+										<td>
+											<%-- <a
+											href="editCustomerData?ID=<%=rs.getInt("customer_id")%>"
 											class="btn btn-warning btn-sm">Edit <i
 												class="fa-solid fa-pen-to-square"></i></a> <!-- here ID is a variable declared for storing the id fetched from getID method -->
-											<a href="deleteCustomerData?ID=<%=cust2.getID()%>"
+											<a href="deleteCustomerData?ID=<%=rs.getInt("customer_id")%>"
 											onclick="confirmDelete(event)" class="btn btn-danger btn-sm">Delete
 												<i class="fa-solid fa-trash-can"></i>
-										</a></td>
+										</a> --%> <a href="editCustomer.jsp?id=<%=customerId%>"
+											class="btn btn-warning btn-sm">Edit</a> <a
+											href="deleteCustomer?id=<%=customerId%>"
+											class="btn btn-danger btn-sm"
+											onclick="return confirm('Are you sure?')">Delete</a>
+
+										</td>
+
 									</tr>
+									<%
+									totalRs.close();
+									totalStmt.close();
+									}
+
+									rs.close();
+									ps.close();
+									conn.close();
+									%>
 								</tbody>
-								<%
-								}
-								}
-								%>
 							</table>
 						</div>
 						<br>
 						<div class="text-center">
-							<a href="addCustomerPurchase.jsp" class="btn btn-primary">Add
-								New Purchase</a>
+							<a href="addCustomerDetails.jsp" class="btn btn-primary">Add
+								New Customer</a>
 						</div>
 					</div>
 
@@ -213,23 +236,9 @@ tbody {
 			</div>
 		</div>
 	</div>
-
-
-	<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
 	<script src="bootstrap.bundle.min.js"></script>
-
 	<script>
-		//confirm delete is a function present in Javascript 
-		function confirmDelete(event) {
-			event.preventDefault(); // Prevent default link action
-			let userConfirm = confirm("Are you sure you want to delete this record");
-			//built-in JavaScript function that shows a confirmation pop-up.
-
-			if (userConfirm) {
-				window.location.href = event.target.href; // Proceed with deletion
-			}
-			//event.target.href retrieves the href attribute of the clicked <a> tag.
-		}
+		
 		
 		function searchTable(){
 			let input = document.getElementById("searchInput").value.toLowerCase();
@@ -242,17 +251,5 @@ tbody {
 			});
 		}
 	</script>
-	<!-- <script>
-        // Calculate Total when Quantity or Price changes
-        document.getElementById("quantity").addEventListener("input", calculateTotal);
-        document.getElementById("price").addEventListener("input", calculateTotal);
-
-        function calculateTotal() {
-            const quantity = document.getElementById("quantity").value;
-            const price = document.getElementById("price").value;
-            const total = quantity * price;
-            document.getElementById("total").value = total;
-        }
-    </script> -->
 </body>
-</html> --%>
+</html>

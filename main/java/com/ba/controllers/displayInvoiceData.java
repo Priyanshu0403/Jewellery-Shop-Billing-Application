@@ -19,28 +19,28 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/displayInvoiceData")
-public class customerInvoiceData extends HttpServlet{
+public class displayInvoiceData extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		List<customerInfo> c1 = new ArrayList<customerInfo>();
 		try {
 			Connection conn = connectDB.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customer_purchase_backup");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customer_detail");
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				customerInfo cst1 = new customerInfo();
 				cst1.setID(rs.getInt("purchase_id"));
 				cst1.setCUSTOMERNAME(rs.getString("customer_name"));
-				
+
 				cst1.setTOTAL(rs.getDouble("total_amount"));
 				cst1.setDATE(rs.getDate("purchase_date"));
 				c1.add(cst1);
 			}
-			
-			
+
 			HttpSession sess = req.getSession();
 			sess.setAttribute("invoice_list", c1);
-			
+
 			RequestDispatcher rd = req.getRequestDispatcher("/invoice.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
